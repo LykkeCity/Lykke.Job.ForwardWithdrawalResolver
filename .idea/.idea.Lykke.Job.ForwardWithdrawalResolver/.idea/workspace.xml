@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7ea5b87b-6435-49aa-8aa8-287d5530483f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Lykke.Job.ForwardWithdrawalResolver/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.Lykke.Job.ForwardWithdrawalResolver/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Sagas/PaymentSaga.cs" afterPath="$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Sagas/PaymentSaga.cs" />
-    </list>
+    <list default="true" id="7ea5b87b-6435-49aa-8aa8-287d5530483f" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,7 +43,7 @@
         <entry file="file://$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Sagas/PaymentSaga.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
-              <caret line="20" column="24" lean-forward="true" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+              <caret line="20" column="24" lean-forward="false" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
               <folding>
                 <marker date="1521226202000" expanded="false" signature="6:222" ph="..." />
                 <marker date="1521226202000" expanded="true" signature="275:1642" ph="{...}" />
@@ -186,12 +183,12 @@
       <workItem from="1521219989480" duration="719000" />
       <workItem from="1521221804314" duration="1270000" />
       <workItem from="1521223608705" duration="868000" />
-      <workItem from="1521225801069" duration="309000" />
+      <workItem from="1521225801069" duration="548000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4697000" />
+    <option name="totallyTimeSpent" value="4936000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -506,7 +503,7 @@
     <entry file="file://$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Sagas/PaymentSaga.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="20" column="24" lean-forward="true" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+          <caret line="20" column="24" lean-forward="false" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
           <folding>
             <marker date="1521226202000" expanded="false" signature="6:222" ph="..." />
             <marker date="1521226202000" expanded="true" signature="275:1642" ph="{...}" />

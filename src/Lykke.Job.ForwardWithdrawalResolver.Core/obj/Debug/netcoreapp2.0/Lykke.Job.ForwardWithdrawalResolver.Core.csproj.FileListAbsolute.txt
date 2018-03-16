@@ -1,8 +1,0 @@
-/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.Core/bin/Debug/netcoreapp2.0/Lykke.Job.ForwardWithdrawalResolver.Core.deps.json
-/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.Core/bin/Debug/netcoreapp2.0/Lykke.Job.ForwardWithdrawalResolver.Core.dll
-/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.Core/bin/Debug/netcoreapp2.0/Lykke.Job.ForwardWithdrawalResolver.Core.pdb
-/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.Core/obj/Debug/netcoreapp2.0/Lykke.Job.ForwardWithdrawalResolver.Core.csproj.CoreCompileInputs.cache
-/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.Core/obj/Debug/netcoreapp2.0/Lykke.Job.ForwardWithdrawalResolver.Core.AssemblyInfoInputs.cache
-/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.Core/obj/Debug/netcoreapp2.0/Lykke.Job.ForwardWithdrawalResolver.Core.AssemblyInfo.cs
-/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.Core/obj/Debug/netcoreapp2.0/Lykke.Job.ForwardWithdrawalResolver.Core.dll
-/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.Core/obj/Debug/netcoreapp2.0/Lykke.Job.ForwardWithdrawalResolver.Core.pdb

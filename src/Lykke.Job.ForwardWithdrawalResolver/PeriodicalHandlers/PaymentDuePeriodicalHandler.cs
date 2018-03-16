@@ -22,7 +22,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.PeriodicalHandlers
             ICqrsEngine cqrsEngine,
             TimeSpan triggerSpan,
             IForwardWithdrawalRepository repository) :
-            base(nameof(PaymentDuePeriodicalHandler), (int)TimeSpan.FromSeconds(10).TotalMilliseconds, log)
+            base(nameof(PaymentDuePeriodicalHandler), (int)TimeSpan.FromMinutes(1).TotalMilliseconds, log)
         {
             _log = log;
             _cqrsEngine = cqrsEngine;

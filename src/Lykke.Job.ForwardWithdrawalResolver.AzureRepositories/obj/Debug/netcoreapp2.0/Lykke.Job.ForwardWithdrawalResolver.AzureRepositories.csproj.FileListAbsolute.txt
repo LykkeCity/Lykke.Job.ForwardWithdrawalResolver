@@ -1,0 +1,10 @@
+/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.AzureRepositories/bin/Debug/netcoreapp2.0/Lykke.Job.ForwardWithdrawalResolver.AzureRepositories.deps.json
+/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.AzureRepositories/bin/Debug/netcoreapp2.0/Lykke.Job.ForwardWithdrawalResolver.AzureRepositories.dll
+/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.AzureRepositories/bin/Debug/netcoreapp2.0/Lykke.Job.ForwardWithdrawalResolver.AzureRepositories.pdb
+/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.AzureRepositories/bin/Debug/netcoreapp2.0/Lykke.Job.ForwardWithdrawalResolver.Core.dll
+/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.AzureRepositories/bin/Debug/netcoreapp2.0/Lykke.Job.ForwardWithdrawalResolver.Core.pdb
+/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.AzureRepositories/obj/Debug/netcoreapp2.0/Lykke.Job.ForwardWithdrawalResolver.AzureRepositories.csproj.CoreCompileInputs.cache
+/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.AzureRepositories/obj/Debug/netcoreapp2.0/Lykke.Job.ForwardWithdrawalResolver.AzureRepositories.AssemblyInfoInputs.cache
+/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.AzureRepositories/obj/Debug/netcoreapp2.0/Lykke.Job.ForwardWithdrawalResolver.AzureRepositories.AssemblyInfo.cs
+/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.AzureRepositories/obj/Debug/netcoreapp2.0/Lykke.Job.ForwardWithdrawalResolver.AzureRepositories.dll
+/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.AzureRepositories/obj/Debug/netcoreapp2.0/Lykke.Job.ForwardWithdrawalResolver.AzureRepositories.pdb

@@ -1,0 +1,137 @@
+﻿{
+  "version": "1.0.1",
+  "restore": {
+    "projectUniqueName": "/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver/Lykke.Job.ForwardWithdrawalResolver.csproj",
+    "projectName": "Lykke.Job.ForwardWithdrawalResolver",
+    "projectPath": "/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver/Lykke.Job.ForwardWithdrawalResolver.csproj",
+    "outputPath": "/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver/obj/",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp2.0"
+    ],
+    "frameworks": {
+      "netcoreapp2.0": {
+        "projectReferences": {
+          "/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.AzureRepositories/Lykke.Job.ForwardWithdrawalResolver.AzureRepositories.csproj": {
+            "projectPath": "/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.AzureRepositories/Lykke.Job.ForwardWithdrawalResolver.AzureRepositories.csproj"
+          },
+          "/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.Core/Lykke.Job.ForwardWithdrawalResolver.Core.csproj": {
+            "projectPath": "/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.Core/Lykke.Job.ForwardWithdrawalResolver.Core.csproj"
+          },
+          "/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.Services/Lykke.Job.ForwardWithdrawalResolver.Services.csproj": {
+            "projectPath": "/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.Services/Lykke.Job.ForwardWithdrawalResolver.Services.csproj"
+          }
+        }
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.0": {
+      "dependencies": {
+        "Lykke.Common": {
+          "target": "Package",
+          "version": "[6.0.0, )"
+        },
+        "Lykke.Common.ApiLibrary": {
+          "target": "Package",
+          "version": "[1.4.0, )"
+        },
+        "Lykke.Cqrs": {
+          "target": "Package",
+          "version": "[4.4.0, )"
+        },
+        "Lykke.Logs": {
+          "target": "Package",
+          "version": "[3.6.0, )"
+        },
+        "Lykke.MatchingEngineConnector.Abstractions": {
+          "target": "Package",
+          "version": "[3.0.2, )"
+        },
+        "Lykke.Messaging.RabbitMq": {
+          "target": "Package",
+          "version": "[2.0.0, )"
+        },
+        "Lykke.Service.ExchangeOperations.Client": {
+          "target": "Package",
+          "version": "[1.1.8, )"
+        },
+        "Lykke.SettingsReader": {
+          "target": "Package",
+          "version": "[2.1.0, )"
+        },
+        "Lykke.SlackNotification.AzureQueue": {
+          "target": "Package",
+          "version": "[2.0.1, )"
+        },
+        "Microsoft.ApplicationInsights.AspNetCore": {
+          "target": "Package",
+          "version": "[2.2.1, )"
+        },
+        "Microsoft.AspNetCore.Diagnostics": {
+          "target": "Package",
+          "version": "[2.0.1, )"
+        },
+        "Microsoft.AspNetCore.HttpOverrides": {
+          "target": "Package",
+          "version": "[2.0.1, )"
+        },
+        "Microsoft.AspNetCore.Mvc": {
+          "target": "Package",
+          "version": "[2.0.2, )"
+        },
+        "Microsoft.AspNetCore.Server.Kestrel": {
+          "target": "Package",
+          "version": "[2.0.1, )"
+        },
+        "Microsoft.AspNetCore.StaticFiles": {
+          "target": "Package",
+          "version": "[2.0.1, )"
+        },
+        "Microsoft.Extensions.Configuration": {
+          "target": "Package",
+          "version": "[2.0.0, )"
+        },
+        "Microsoft.Extensions.Configuration.Binder": {
+          "target": "Package",
+          "version": "[2.0.0, )"
+        },
+        "Microsoft.Extensions.Configuration.EnvironmentVariables": {
+          "target": "Package",
+          "version": "[2.0.0, )"
+        },
+        "Microsoft.Extensions.Configuration.FileExtensions": {
+          "target": "Package",
+          "version": "[2.0.0, )"
+        },
+        "Microsoft.Extensions.Configuration.Json": {
+          "target": "Package",
+          "version": "[2.0.0, )"
+        },
+        "Microsoft.Extensions.DependencyInjection.Abstractions": {
+          "target": "Package",
+          "version": "[2.0.0, )"
+        },
+        "Microsoft.NETCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.0.0, )",
+          "autoReferenced": true
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}

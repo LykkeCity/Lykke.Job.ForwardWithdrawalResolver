@@ -1,0 +1,47 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.Core/Lykke.Job.ForwardWithdrawalResolver.Core.csproj",
+    "projectName": "Lykke.Job.ForwardWithdrawalResolver.Core",
+    "projectPath": "/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.Core/Lykke.Job.ForwardWithdrawalResolver.Core.csproj",
+    "outputPath": "/Users/nika/RiderProjects/Lykke.Job.ForwardWithdrawalResolver/src/Lykke.Job.ForwardWithdrawalResolver.Core/obj/",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp2.0"
+    ],
+    "frameworks": {
+      "netcoreapp2.0": {
+        "projectReferences": {}
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.0": {
+      "dependencies": {
+        "Lykke.Common": {
+          "target": "Package",
+          "version": "[6.0.0, )"
+        },
+        "Microsoft.NETCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.0.0, )",
+          "autoReferenced": true
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}

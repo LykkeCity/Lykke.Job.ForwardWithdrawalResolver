@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Common;
 using Common.Log;
 using JetBrains.Annotations;
 using Lykke.Cqrs;
@@ -7,6 +8,7 @@ using Lykke.Job.ForwardWithdrawalResolver.AzureRepositories;
 using Lykke.Job.ForwardWithdrawalResolver.Core.Services;
 using Lykke.Job.ForwardWithdrawalResolver.Sagas.Commands;
 using Lykke.Job.ForwardWithdrawalResolver.Sagas.Events;
+using Lykke.MatchingEngine.Connector.Abstractions.Models;
 using Lykke.Service.ExchangeOperations.Client;
 
 namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
@@ -35,7 +37,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
         [UsedImplicitly]
         public async Task<CommandHandlingResult> Handle(RemoveEntryCommand command, IEventPublisher eventPublisher)
         {
-            LogInfo(nameof(RemoveEntryCommand), $"Beginning processing {command.Id}", command, command.ClientId);
+            _log.WriteInfo(nameof(RemoveEntryCommand), command.ClientId, $"Beginning to process: {command.ToJson()}");
 
             var forwardWithdrawal = await _repository.TryGetAsync(command.ClientId, command.Id);
 
@@ -63,7 +65,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
         [UsedImplicitly]
         public async Task<CommandHandlingResult> Handle(ResolvePaymentCommand command, IEventPublisher eventPublisher)
         {
-            LogInfo(nameof(ResolvePaymentCommand), $"Beginning processing {command.Id}", command, command.ClientId);
+            _log.WriteInfo(nameof(ResolvePaymentCommand), command.ClientId, $"Beginning to process: {command.ToJson()}");
 
             var assetToPayId = await _paymentResolver.Resolve(command.AssetId);
             
@@ -81,7 +83,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
         [UsedImplicitly]
         public async Task<CommandHandlingResult> Handle(ProcessPaymentCommand command, IEventPublisher eventPublisher)
         {
-            LogInfo(nameof(ProcessPaymentCommand), $"Beginning processing {command.Id}", command, command.ClientId);
+            _log.WriteInfo(nameof(ProcessPaymentCommand), command.ClientId, $"Beginning to process: {command.ToJson()}");
 
             try
             {
@@ -97,28 +99,29 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
 
                 if (result.IsOk())
                 {
-                    LogInfo(nameof(ProcessPaymentCommand), "Done processing", command, command.Id);
+                    _log.WriteInfo(nameof(ProcessPaymentCommand), command.ClientId, $"Done processing: {command.ToJson()}");
                     
                     return CommandHandlingResult.Ok();
                 }
                 else
                 {
-                    throw new InvalidOperationException($"During transfer, ME responded with: {result.Code}");
+                    if (result.Code == (int)MeStatusCodes.Duplicate)
+                    {
+                        _log.WriteWarning(nameof(ProcessPaymentCommand), command.ClientId, $"Duplicate transfer attempt: {command.ToJson()}");
+                        
+                        return CommandHandlingResult.Ok();
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException($"During transfer of {command.Id}, ME responded with: {result.Code}");
+                    }
                 }
             }
             catch (Exception e)
             {
-                _log.WriteError(nameof(CommandsHandler), command, e);
+                _log.WriteError(nameof(ProcessPaymentCommand), command.ClientId, e);
                 
-                return CommandHandlingResult.Fail(TimeSpan.FromSeconds(10));
-            }
-        }
-
-        private void LogInfo(string process, string message, params object[] contexts)
-        {
-            foreach (var context in contexts)
-            {
-                _log.WriteInfo(process, context, message);
+                return CommandHandlingResult.Fail(TimeSpan.FromMinutes(1));
             }
         }
     }

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ea5b87b-6435-49aa-8aa8-287d5530483f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Modules/JobModule.cs" afterPath="$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Modules/JobModule.cs" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Lykke.Job.ForwardWithdrawalResolver/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.Lykke.Job.ForwardWithdrawalResolver/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Sagas/CommandsHandler.cs" afterPath="$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Sagas/CommandsHandler.cs" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -12,6 +12,61 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="CommandsHandler.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Sagas/CommandsHandler.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="641">
+              <caret line="111" column="44" lean-forward="false" selection-start-line="111" selection-start-column="44" selection-end-line="111" selection-end-column="44" />
+              <folding>
+                <marker date="1521223858000" expanded="false" signature="6:459" ph="..." />
+                <marker date="1521223858000" expanded="true" signature="512:4892" ph="{...}" />
+                <marker date="1521223858000" expanded="true" signature="547:4890" ph="{...}" />
+                <marker date="1521223858000" expanded="true" signature="1093:1331" ph="{...}" />
+                <marker date="1521223858000" expanded="true" signature="1481:2413" ph="{...}" />
+                <marker date="1521223858000" expanded="true" signature="1752:1831" ph="{...}" />
+                <marker date="1521223858000" expanded="true" signature="1987:2343" ph="{...}" />
+                <marker date="1521223858000" expanded="true" signature="2091:2327" ph="{...}" />
+                <marker date="1521223858000" expanded="true" signature="2558:3107" ph="{...}" />
+                <marker date="1521223858000" expanded="true" signature="2862:3035" ph="{...}" />
+                <marker date="1521223858000" expanded="true" signature="3252:4884" ph="{...}" />
+                <marker date="1521223858000" expanded="true" signature="3401:4636" ph="{...}" />
+                <marker date="1521223858000" expanded="true" signature="3788:4025" ph="{...}" />
+                <marker date="1521223858000" expanded="true" signature="4046:4622" ph="{...}" />
+                <marker date="1521223858000" expanded="true" signature="4133:4404" ph="{...}" />
+                <marker date="1521223858000" expanded="true" signature="4429:4604" ph="{...}" />
+                <marker date="1521223858000" expanded="true" signature="4668:4874" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JobModule.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Modules/JobModule.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2040">
+              <caret line="158" column="35" lean-forward="false" selection-start-line="158" selection-start-column="35" selection-end-line="158" selection-end-column="35" />
+              <folding>
+                <marker date="1521213146000" expanded="false" signature="6:912" ph="..." />
+                <marker date="1521213146000" expanded="true" signature="967:7181" ph="{...}" />
+                <marker date="1521213146000" expanded="true" signature="1005:7179" ph="{...}" />
+                <marker date="1521213146000" expanded="true" signature="1332:1512" ph="{...}" />
+                <marker date="1521213146000" expanded="true" signature="1576:2424" ph="{...}" />
+                <marker date="1521213146000" expanded="true" signature="2489:2814" ph="{...}" />
+                <marker date="1521213146000" expanded="true" signature="2888:3294" ph="{...}" />
+                <marker date="1521213146000" expanded="true" signature="3369:3679" ph="{...}" />
+                <marker date="1521213146000" expanded="true" signature="3750:4027" ph="{...}" />
+                <marker date="1521213146000" expanded="true" signature="4096:7173" ph="{...}" />
+                <marker date="1521213146000" expanded="true" signature="4419:4602" ph="{...}" />
+                <marker date="1521213146000" expanded="true" signature="4988:7125" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -19,13 +74,15 @@
     <setting file="file://$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Sagas/CommandsHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Modules/JobModule.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D70092FC-743A-436D-8D32-163ED60B0EC2/e8/9b3cf734/RegistrationWrapperExtensions.cs" root0="SKIP_INSPECTION" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/02457ABD-19A8-4783-8306-7360C60C5A51/ff/0b9cc1d1/IExchangeOperationsServiceClient.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E26C116A-C6E8-4BE1-AEF1-02D641347E39/a9/41e5b809/MeStatusCodes.cs" root0="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Sagas/CommandsHandler.cs" />
         <option value="$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Modules/JobModule.cs" />
+        <option value="$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Sagas/CommandsHandler.cs" />
       </list>
     </option>
   </component>
@@ -36,8 +93,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="height" value="828" />
   </component>
   <component name="ProjectView">
     <navigator currentView="SolutionExplorer" proportions="" version="1">
@@ -54,6 +112,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="SolutionExplorer">
         <subPane>
           <expand>
@@ -61,30 +120,12 @@
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
               <item name="Lykke.Job.ForwardWithdrawalResolver (5 projects)" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="Lykke.Job.ForwardWithdrawalResolver (5 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Lykke.Job.ForwardWithdrawalResolver" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="Lykke.Job.ForwardWithdrawalResolver (5 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Lykke.Job.ForwardWithdrawalResolver" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Modules" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
-            <path>
-              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="Lykke.Job.ForwardWithdrawalResolver (5 projects)" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Lykke.Job.ForwardWithdrawalResolver" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Sagas" type="977d5f41:SolutionExplorerNodeRider" />
-            </path>
           </expand>
           <select />
         </subPane>
         <option name="show-file-system" value="false" />
         <option name="show-all-items" value="false" />
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -133,11 +174,14 @@
       <option name="presentableId" value="Default" />
       <updated>1521212121801</updated>
       <workItem from="1521212127906" duration="1531000" />
+      <workItem from="1521219989480" duration="719000" />
+      <workItem from="1521221804314" duration="1270000" />
+      <workItem from="1521223608705" duration="295000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1531000" />
+    <option name="totallyTimeSpent" value="3815000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -150,27 +194,28 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Errors In Solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Unit Tests" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Errors In Solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Unit Tests" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="NuGet" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22889842" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="NuGet" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2274678" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -183,5 +228,223 @@
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Sagas/CommandsHandler.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1521223858000" expanded="false" signature="6:459" ph="..." />
+            <marker date="1521223858000" expanded="true" signature="512:4892" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="547:4890" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="1093:1331" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="1481:2413" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="1752:1831" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="1987:2343" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="2091:2327" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="2558:3107" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="2862:3035" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="3252:4884" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="3401:4636" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="3788:4025" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="4046:4622" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="4133:4404" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="4429:4604" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="4668:4874" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Modules/JobModule.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2040">
+          <caret line="158" column="35" lean-forward="false" selection-start-line="158" selection-start-column="35" selection-end-line="158" selection-end-column="35" />
+          <folding>
+            <marker date="1521213146000" expanded="false" signature="6:912" ph="..." />
+            <marker date="1521213146000" expanded="true" signature="967:7181" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="1005:7179" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="1332:1512" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="1576:2424" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="2489:2814" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="2888:3294" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="3369:3679" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="3750:4027" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="4096:7173" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="4419:4602" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="4988:7125" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Sagas/CommandsHandler.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1110">
+          <caret line="83" column="16" lean-forward="false" selection-start-line="83" selection-start-column="16" selection-end-line="83" selection-end-column="16" />
+          <folding>
+            <marker date="1521223858000" expanded="false" signature="6:459" ph="..." />
+            <marker date="1521223858000" expanded="true" signature="512:4892" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="547:4890" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="1093:1331" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="1481:2413" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="1752:1831" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="1987:2343" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="2091:2327" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="2558:3107" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="2862:3035" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="3252:4884" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="3401:4636" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="3788:4025" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="4046:4622" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="4133:4404" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="4429:4604" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="4668:4874" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Modules/JobModule.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1830">
+          <caret line="144" column="42" lean-forward="false" selection-start-line="144" selection-start-column="42" selection-end-line="144" selection-end-column="42" />
+          <folding>
+            <marker date="1521213146000" expanded="false" signature="6:912" ph="..." />
+            <marker date="1521213146000" expanded="true" signature="967:7181" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="1005:7179" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="1332:1512" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="1576:2424" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="2489:2814" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="2888:3294" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="3369:3679" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="3750:4027" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="4096:7173" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="4419:4602" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="4988:7125" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Sagas/CommandsHandler.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1521223858000" expanded="false" signature="6:459" ph="..." />
+            <marker date="1521223858000" expanded="true" signature="512:4892" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="547:4890" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="1093:1331" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="1481:2413" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="1752:1831" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="1987:2343" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="2091:2327" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="2558:3107" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="2862:3035" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="3252:4884" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="3401:4636" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="3788:4025" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="4046:4622" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="4133:4404" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="4429:4604" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="4668:4874" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Modules/JobModule.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1830">
+          <caret line="144" column="42" lean-forward="true" selection-start-line="144" selection-start-column="42" selection-end-line="144" selection-end-column="42" />
+          <folding>
+            <marker date="1521213146000" expanded="false" signature="6:912" ph="..." />
+            <marker date="1521213146000" expanded="true" signature="967:7181" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="1005:7179" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="1332:1512" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="1576:2424" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="2489:2814" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="2888:3294" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="3369:3679" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="3750:4027" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="4096:7173" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="4419:4602" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="4988:7125" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/02457ABD-19A8-4783-8306-7360C60C5A51/ff/0b9cc1d1/IExchangeOperationsServiceClient.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="31" column="253" lean-forward="false" selection-start-line="31" selection-start-column="253" selection-end-line="31" selection-end-column="253" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Program.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-193">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D70092FC-743A-436D-8D32-163ED60B0EC2/e8/9b3cf734/RegistrationWrapperExtensions.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1125">
+          <caret line="75" column="46" lean-forward="false" selection-start-line="75" selection-start-column="46" selection-end-line="75" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Modules/JobModule.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2040">
+          <caret line="158" column="35" lean-forward="false" selection-start-line="158" selection-start-column="35" selection-end-line="158" selection-end-column="35" />
+          <folding>
+            <marker date="1521213146000" expanded="false" signature="6:912" ph="..." />
+            <marker date="1521213146000" expanded="true" signature="967:7181" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="1005:7179" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="1332:1512" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="1576:2424" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="2489:2814" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="2888:3294" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="3369:3679" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="3750:4027" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="4096:7173" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="4419:4602" ph="{...}" />
+            <marker date="1521213146000" expanded="true" signature="4988:7125" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E26C116A-C6E8-4BE1-AEF1-02D641347E39/a9/41e5b809/MeStatusCodes.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="4" lean-forward="false" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Lykke.Job.ForwardWithdrawalResolver/Sagas/CommandsHandler.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="641">
+          <caret line="111" column="44" lean-forward="false" selection-start-line="111" selection-start-column="44" selection-end-line="111" selection-end-column="44" />
+          <folding>
+            <marker date="1521223858000" expanded="false" signature="6:459" ph="..." />
+            <marker date="1521223858000" expanded="true" signature="512:4892" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="547:4890" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="1093:1331" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="1481:2413" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="1752:1831" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="1987:2343" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="2091:2327" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="2558:3107" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="2862:3035" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="3252:4884" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="3401:4636" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="3788:4025" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="4046:4622" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="4133:4404" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="4429:4604" ph="{...}" />
+            <marker date="1521223858000" expanded="true" signature="4668:4874" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

@@ -35,7 +35,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
         [UsedImplicitly]
         public async Task<CommandHandlingResult> Handle(RemoveEntryCommand command, IEventPublisher eventPublisher)
         {
-            _log.WriteInfo(nameof(CommandsHandler), command, "Beginning processing");
+            LogInfo(nameof(RemoveEntryCommand), $"Beginning processing {command.Id}", command, command.ClientId);
 
             var forwardWithdrawal = await _repository.TryGetAsync(command.ClientId, command.Id);
 
@@ -63,7 +63,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
         [UsedImplicitly]
         public async Task<CommandHandlingResult> Handle(ResolvePaymentCommand command, IEventPublisher eventPublisher)
         {
-            _log.WriteInfo(nameof(CommandsHandler), command, "Beginning processing");
+            LogInfo(nameof(ResolvePaymentCommand), $"Beginning processing {command.Id}", command, command.ClientId);
 
             var assetToPayId = await _paymentResolver.Resolve(command.AssetId);
             
@@ -81,7 +81,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
         [UsedImplicitly]
         public async Task<CommandHandlingResult> Handle(ProcessPaymentCommand command, IEventPublisher eventPublisher)
         {
-            _log.WriteInfo(nameof(CommandsHandler), command, "Beginning processing");
+            LogInfo(nameof(ProcessPaymentCommand), $"Beginning processing {command.Id}", command, command.ClientId);
 
             try
             {
@@ -89,10 +89,16 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
                     command.ClientId,
                     _hotWalletId,
                     command.Amount,
-                    command.AssetId);
+                    command.AssetId,
+                    "Common",
+                    null,
+                    null,
+                    command.Id);
 
                 if (result.IsOk())
                 {
+                    LogInfo(nameof(ProcessPaymentCommand), "Done processing", command, command.Id);
+                    
                     return CommandHandlingResult.Ok();
                 }
                 else
@@ -105,6 +111,14 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
                 _log.WriteError(nameof(CommandsHandler), command, e);
                 
                 return CommandHandlingResult.Fail(TimeSpan.FromSeconds(10));
+            }
+        }
+
+        private void LogInfo(string process, string message, params object[] contexts)
+        {
+            foreach (var context in contexts)
+            {
+                _log.WriteInfo(process, context, message);
             }
         }
     }

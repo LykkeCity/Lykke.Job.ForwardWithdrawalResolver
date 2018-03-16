@@ -140,7 +140,11 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Modules
                     true,
 
                     Register.DefaultEndpointResolver(
-                        new RabbitMqConventionEndpointResolver("RabbitMq", "messagepack", "lykke")),
+                        new RabbitMqConventionEndpointResolver(
+                            "RabbitMq",
+                            "messagepack",
+                            "forwardwithdrawalresolver",
+                            "lykke")),
 
                     Register.BoundedContext(BoundedContexts.Payment)
                         .ListeningCommands(

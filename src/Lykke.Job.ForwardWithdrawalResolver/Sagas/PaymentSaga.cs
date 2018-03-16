@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Common;
 using Common.Log;
 using JetBrains.Annotations;
 using Lykke.Cqrs;
@@ -20,7 +21,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
         [UsedImplicitly]
         public async Task Handle(PaymentEntryRemovedEvent evt, ICommandSender commandSender)
         {
-            _log.WriteInfo(nameof(PaymentSaga), evt, "Entry removed from repository");
+            _log.WriteInfo(nameof(PaymentEntryRemovedEvent), evt.ClientId, $"Entry removed from repository: {evt.ToJson()}");
 
             var resolvePaymentCommand = new ResolvePaymentCommand
             {
@@ -36,7 +37,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
         [UsedImplicitly]
         public async Task Handle(PaymentResolvedEvent evt, ICommandSender commandSender)
         {
-            _log.WriteInfo(nameof(PaymentSaga), evt, "Entry removed from repository");
+            _log.WriteInfo(nameof(PaymentResolvedEvent), evt.ClientId, $"Payment resolved: {evt.ToJson()}");
 
             var processPaymentCommand = new ProcessPaymentCommand
             {

@@ -1,9 +1,9 @@
 ﻿using MessagePack;
 
-namespace Lykke.Job.ForwardWithdrawalResolver.Sagas.Events
+namespace Lykke.Job.ForwardWithdrawalResolver.Sagas.Commands
 {
     [MessagePackObject(keyAsPropertyName: true)]
-    public class PaymentEntryRemovedEvent
+    public class RemoveEntryFromHistoryJobCommand
     {
         public string Id { set; get; }
         public string ClientId { set; get; }

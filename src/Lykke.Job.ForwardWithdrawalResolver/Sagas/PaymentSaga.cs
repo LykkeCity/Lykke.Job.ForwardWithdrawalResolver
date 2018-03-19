@@ -23,6 +23,40 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
         {
             _log.WriteInfo(nameof(PaymentEntryRemovedEvent), evt.ClientId, $"Entry removed from repository: {evt.ToJson()}");
 
+            var removeEntryFromHistoryServiceCommand = new RemoveEntryFromHistoryServiceCommand
+            {
+                Id = evt.Id,
+                ClientId = evt.ClientId,
+                AssetId = evt.AssetId,
+                Amount = evt.Amount,
+                CashInId = evt.CashInId
+            };
+
+            commandSender.SendCommand(removeEntryFromHistoryServiceCommand, BoundedContexts.Payment);
+        }
+        
+        [UsedImplicitly]
+        public async Task Handle(CashInRemovedFromHistoryServiceEvent evt, ICommandSender commandSender)
+        {
+            _log.WriteInfo(nameof(CashInRemovedFromHistoryServiceEvent), evt.ClientId, $"Entry removed from OperationsHistory: {evt.ToJson()}");
+
+            var removeEntryFromHistoryJobCommand = new RemoveEntryFromHistoryJobCommand
+            {
+                Id = evt.Id,
+                ClientId = evt.ClientId,
+                AssetId = evt.AssetId,
+                Amount = evt.Amount,
+                CashInId = evt.CashInId
+            };
+
+            commandSender.SendCommand(removeEntryFromHistoryJobCommand, BoundedContexts.Payment);
+        }
+        
+        [UsedImplicitly]
+        public async Task Handle(CashInRemovedFromHistoryJobEvent evt, ICommandSender commandSender)
+        {
+            _log.WriteInfo(nameof(CashInRemovedFromHistoryServiceEvent), evt.ClientId, $"Entry removed from OperationsHistory: {evt.ToJson()}");
+
             var resolvePaymentCommand = new ResolvePaymentCommand
             {
                 Id = evt.Id,

@@ -8,8 +8,10 @@ using Lykke.Job.ForwardWithdrawalResolver.AzureRepositories;
 using Lykke.Job.ForwardWithdrawalResolver.Core.Services;
 using Lykke.Job.ForwardWithdrawalResolver.Sagas.Commands;
 using Lykke.Job.ForwardWithdrawalResolver.Sagas.Events;
+using Lykke.Job.OperationsCache.Client;
 using Lykke.MatchingEngine.Connector.Abstractions.Models;
 using Lykke.Service.ExchangeOperations.Client;
+using Lykke.Service.OperationsHistory.Client;
 
 namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
 {
@@ -18,6 +20,8 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
         private readonly ILog _log;
         private readonly IForwardWithdrawalRepository _repository;
         private readonly IExchangeOperationsServiceClient _exchangeOperationsService;
+        private readonly IOperationsHistoryClient _operationsHistoryClient;
+        private readonly IOperationsCacheClient _operationsCacheClient;
         private readonly IPaymentResolver _paymentResolver;
         private readonly string _hotWalletId;
 
@@ -25,12 +29,16 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
             IForwardWithdrawalRepository repository,
             IExchangeOperationsServiceClient exchangeOperationsService,
             IPaymentResolver paymentResolver,
+            IOperationsCacheClient operationsCacheClient,
+            IOperationsHistoryClient operationsHistoryClient,
             string hotWalletId)
         {
             _log = log;
             _repository = repository;
             _exchangeOperationsService = exchangeOperationsService;
             _paymentResolver = paymentResolver;
+            _operationsHistoryClient = operationsHistoryClient;
+            _operationsCacheClient = operationsCacheClient;
             _hotWalletId = hotWalletId;
         }
         
@@ -55,9 +63,48 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
                     Id = forwardWithdrawal.Id,
                     ClientId = forwardWithdrawal.ClientId,
                     AssetId = forwardWithdrawal.AssetId,
-                    Amount = forwardWithdrawal.Amount
+                    Amount = forwardWithdrawal.Amount,
+                    CashInId = forwardWithdrawal.CashInId
                 });
             }
+            
+            return CommandHandlingResult.Ok();
+        }
+        
+        [UsedImplicitly]
+        public async Task<CommandHandlingResult> Handle(RemoveEntryFromHistoryServiceCommand command, IEventPublisher eventPublisher)
+        {
+            _log.WriteInfo(nameof(RemoveEntryFromHistoryServiceCommand), command.ClientId, $"Beginning to process: {command.ToJson()}");
+
+            await _operationsHistoryClient.DeleteByClientIdOperationId(command.ClientId, command.CashInId);
+            
+            eventPublisher.PublishEvent(new CashInRemovedFromHistoryServiceEvent
+            {
+                Id = command.Id,
+                ClientId = command.ClientId,
+                AssetId = command.AssetId,
+                Amount = command.Amount,
+                CashInId = command.CashInId
+            });
+            
+            return CommandHandlingResult.Ok();
+        }
+        
+        [UsedImplicitly]
+        public async Task<CommandHandlingResult> Handle(RemoveEntryFromHistoryJobCommand command, IEventPublisher eventPublisher)
+        {
+            _log.WriteInfo(nameof(RemoveEntryFromHistoryJobCommand), command.ClientId, $"Beginning to process: {command.ToJson()}");
+
+            await _operationsCacheClient.RemoveCashoutIfExists(command.ClientId, command.CashInId);
+            
+            eventPublisher.PublishEvent(new CashInRemovedFromHistoryJobEvent
+            {
+                Id = command.Id,
+                ClientId = command.ClientId,
+                AssetId = command.AssetId,
+                Amount = command.Amount,
+                CashInId = command.CashInId
+            });
             
             return CommandHandlingResult.Ok();
         }

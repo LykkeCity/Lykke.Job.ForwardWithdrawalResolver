@@ -3,7 +3,7 @@
 namespace Lykke.Job.ForwardWithdrawalResolver.Sagas.Events
 {
     [MessagePackObject(keyAsPropertyName: true)]
-    public class PaymentEntryRemovedEvent
+    public class CashInRemovedFromHistoryServiceEvent
     {
         public string Id { set; get; }
         public string ClientId { set; get; }

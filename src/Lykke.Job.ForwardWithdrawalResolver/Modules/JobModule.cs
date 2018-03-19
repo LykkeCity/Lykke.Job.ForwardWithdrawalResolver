@@ -17,9 +17,11 @@ using Lykke.Job.ForwardWithdrawalResolver.Sagas;
 using Lykke.Job.ForwardWithdrawalResolver.Sagas.Commands;
 using Lykke.Job.ForwardWithdrawalResolver.Sagas.Events;
 using Lykke.Job.ForwardWithdrawalResolver.Settings;
+using Lykke.Job.OperationsCache.Client;
 using Lykke.Messaging;
 using Lykke.Messaging.RabbitMq;
 using Lykke.Service.ExchangeOperations.Client;
+using Lykke.Service.OperationsHistory.Client;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Lykke.Job.ForwardWithdrawalResolver.Modules
@@ -67,6 +69,8 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Modules
             RegisterCqrs(builder);
 
             RegisterPeriodicalHandlers(builder);
+            
+            RegisterClients(builder);
 
             builder.Populate(_services);
         }
@@ -98,6 +102,12 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Modules
                 .As<IStartable>()
                 .AutoActivate()
                 .SingleInstance();
+        }
+
+        private void RegisterClients(ContainerBuilder builder)
+        {
+            builder.RegisterOperationsHistoryClient(_settings.OperationsHistoryServiceClient, _log);
+            builder.RegisterOperationsCacheClient(_settings.OperationsCacheJobClient, _log);
         }
 
         private void RegisterServiceClients(ContainerBuilder builder)
@@ -150,23 +160,31 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Modules
                         .ListeningCommands(
                             typeof(ProcessPaymentCommand),
                             typeof(RemoveEntryCommand),
+                            typeof(RemoveEntryFromHistoryJobCommand),
+                            typeof(RemoveEntryFromHistoryServiceCommand),
                             typeof(ResolvePaymentCommand))
                         .On(defaultRoute)
                         .PublishingEvents(
                             typeof(PaymentEntryRemovedEvent),
-                            typeof(PaymentResolvedEvent))
+                            typeof(PaymentResolvedEvent),
+                            typeof(CashInRemovedFromHistoryJobEvent),
+                            typeof(CashInRemovedFromHistoryServiceEvent))
                         .With(defaultPipeline)
                         .WithCommandsHandler(typeof(CommandsHandler)),
 
                     Register.Saga<PaymentSaga>("payment-saga")
                         .ListeningEvents(
                             typeof(PaymentEntryRemovedEvent),
-                            typeof(PaymentResolvedEvent))
+                            typeof(PaymentResolvedEvent),
+                            typeof(CashInRemovedFromHistoryJobEvent),
+                            typeof(CashInRemovedFromHistoryServiceEvent))
                         .From(BoundedContexts.Payment).On(defaultRoute)
                         .PublishingCommands(
                             typeof(ProcessPaymentCommand),
                             typeof(RemoveEntryCommand),
-                            typeof(ResolvePaymentCommand))
+                            typeof(ResolvePaymentCommand),
+                            typeof(RemoveEntryFromHistoryJobCommand),
+                            typeof(RemoveEntryFromHistoryServiceCommand))
                         .To(BoundedContexts.Payment).With(defaultPipeline),
                         
                     Register.DefaultRouting

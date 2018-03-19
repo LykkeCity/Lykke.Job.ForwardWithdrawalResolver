@@ -95,7 +95,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
         {
             _log.WriteInfo(nameof(RemoveEntryFromHistoryJobCommand), command.ClientId, $"Beginning to process: {command.ToJson()}");
 
-            await _operationsCacheClient.RemoveCashoutIfExists(command.ClientId, command.CashInId);
+            await _operationsCacheClient.RemoveCashInIfExists(command.ClientId, command.CashInId);
             
             eventPublisher.PublishEvent(new CashInRemovedFromHistoryJobEvent
             {

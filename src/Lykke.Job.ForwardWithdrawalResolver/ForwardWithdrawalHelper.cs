@@ -1,0 +1,13 @@
+﻿using System;
+using Lykke.Job.ForwardWithdrawalResolver.AzureRepositories;
+
+namespace Lykke.Job.ForwardWithdrawalResolver
+{
+    public static class ForwardWithdrawalHelper
+    {
+        public static bool IsDue(this IForwardWithdrawal withdrawal, TimeSpan triggerSpan)
+        {
+            return DateTime.UtcNow - withdrawal.DateTime > triggerSpan;
+        }
+    }
+}

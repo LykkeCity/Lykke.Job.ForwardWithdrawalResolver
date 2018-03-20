@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lykke.Job.ForwardWithdrawalResolver.Core\Lykke.Job.ForwardWithdrawalResolver.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Lykke.Common" Version="6.0.0" />
+  </ItemGroup>
+</Project>

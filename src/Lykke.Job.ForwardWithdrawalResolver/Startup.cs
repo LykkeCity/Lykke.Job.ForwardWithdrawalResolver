@@ -59,7 +59,11 @@ namespace Lykke.Job.ForwardWithdrawalResolver
                 Log = CreateLogWithSlack(services, appSettings);
 
                 builder.RegisterModule(new JobModule(appSettings.CurrentValue, appSettings.Nested(x => x.ForwardWithdrawalResolverJob.Db), Log));
-
+                builder.RegisterModule(new AzureModule(appSettings.CurrentValue, appSettings.Nested(x => x.ForwardWithdrawalResolverJob.Db), Log));
+                builder.RegisterModule(new ClientsModule(appSettings.CurrentValue, appSettings.Nested(x => x.ForwardWithdrawalResolverJob.Db), Log));
+                builder.RegisterModule(new CqrsModule(appSettings.CurrentValue, appSettings.Nested(x => x.ForwardWithdrawalResolverJob.Db), Log));
+                
+                
                 builder.Populate(services);
 
                 ApplicationContainer = builder.Build();

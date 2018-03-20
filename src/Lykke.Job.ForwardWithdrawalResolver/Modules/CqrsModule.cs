@@ -73,12 +73,10 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Modules
                             typeof(ProcessPaymentCommand),
                             typeof(RemoveEntryCommand),
                             typeof(RemoveEntryFromHistoryJobCommand),
-                            typeof(RemoveEntryFromHistoryServiceCommand),
-                            typeof(ResolvePaymentCommand))
+                            typeof(RemoveEntryFromHistoryServiceCommand))
                         .On(defaultRoute)
                         .PublishingEvents(
                             typeof(PaymentEntryRemovedEvent),
-                            typeof(PaymentResolvedEvent),
                             typeof(CashInRemovedFromHistoryJobEvent),
                             typeof(CashInRemovedFromHistoryServiceEvent))
                         .With(defaultPipeline)
@@ -87,14 +85,12 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Modules
                     Register.Saga<PaymentSaga>("payment-saga")
                         .ListeningEvents(
                             typeof(PaymentEntryRemovedEvent),
-                            typeof(PaymentResolvedEvent),
                             typeof(CashInRemovedFromHistoryJobEvent),
                             typeof(CashInRemovedFromHistoryServiceEvent))
                         .From(BoundedContexts.Payment).On(defaultRoute)
                         .PublishingCommands(
                             typeof(ProcessPaymentCommand),
                             typeof(RemoveEntryCommand),
-                            typeof(ResolvePaymentCommand),
                             typeof(RemoveEntryFromHistoryJobCommand),
                             typeof(RemoveEntryFromHistoryServiceCommand))
                         .To(BoundedContexts.Payment).With(defaultPipeline),

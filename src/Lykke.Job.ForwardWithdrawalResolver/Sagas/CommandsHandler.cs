@@ -22,13 +22,11 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
         private readonly IExchangeOperationsServiceClient _exchangeOperationsService;
         private readonly IOperationsHistoryClient _operationsHistoryClient;
         private readonly IOperationsCacheClient _operationsCacheClient;
-        private readonly IPaymentResolver _paymentResolver;
         private readonly string _hotWalletId;
 
         public CommandsHandler(ILog log,
             IForwardWithdrawalRepository repository,
             IExchangeOperationsServiceClient exchangeOperationsService,
-            IPaymentResolver paymentResolver,
             IOperationsCacheClient operationsCacheClient,
             IOperationsHistoryClient operationsHistoryClient,
             string hotWalletId)
@@ -36,7 +34,6 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
             _log = log;
             _repository = repository;
             _exchangeOperationsService = exchangeOperationsService;
-            _paymentResolver = paymentResolver;
             _operationsHistoryClient = operationsHistoryClient;
             _operationsCacheClient = operationsCacheClient;
             _hotWalletId = hotWalletId;
@@ -104,24 +101,6 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
                 AssetId = command.AssetId,
                 Amount = command.Amount,
                 CashInId = command.CashInId
-            });
-            
-            return CommandHandlingResult.Ok();
-        }
-
-        [UsedImplicitly]
-        public async Task<CommandHandlingResult> Handle(ResolvePaymentCommand command, IEventPublisher eventPublisher)
-        {
-            _log.WriteInfo(nameof(ResolvePaymentCommand), command.ClientId, $"Beginning to process: {command.ToJson()}");
-
-            var assetToPayId = await _paymentResolver.Resolve(command.AssetId);
-            
-            eventPublisher.PublishEvent(new PaymentResolvedEvent
-            {
-                Id = command.Id,
-                ClientId = command.ClientId,
-                AssetId = assetToPayId,
-                Amount = command.Amount
             });
             
             return CommandHandlingResult.Ok();

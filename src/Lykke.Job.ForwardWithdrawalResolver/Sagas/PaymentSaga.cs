@@ -3,6 +3,7 @@ using Common;
 using Common.Log;
 using JetBrains.Annotations;
 using Lykke.Cqrs;
+using Lykke.Job.ForwardWithdrawalResolver.Core.Services;
 using Lykke.Job.ForwardWithdrawalResolver.Sagas.Commands;
 using Lykke.Job.ForwardWithdrawalResolver.Sagas.Events;
 
@@ -12,10 +13,14 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
     public class PaymentSaga
     {
         private readonly ILog _log;
+        private readonly IPaymentResolver _paymentResolver;
 
-        public PaymentSaga(ILog log)
+        public PaymentSaga(
+            ILog log,
+            IPaymentResolver paymentResolver)
         {
             _log = log;
+            _paymentResolver = paymentResolver;
         }
         
         [UsedImplicitly]
@@ -55,29 +60,15 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
         [UsedImplicitly]
         public async Task Handle(CashInRemovedFromHistoryJobEvent evt, ICommandSender commandSender)
         {
-            _log.WriteInfo(nameof(CashInRemovedFromHistoryServiceEvent), evt.ClientId, $"Entry removed from OperationsHistory: {evt.ToJson()}");
+            _log.WriteInfo(nameof(CashInRemovedFromHistoryJobEvent), evt.ClientId, $"Entry removed from OperationsCache: {evt.ToJson()}");
 
-            var resolvePaymentCommand = new ResolvePaymentCommand
-            {
-                Id = evt.Id,
-                ClientId = evt.ClientId,
-                AssetId = evt.AssetId,
-                Amount = evt.Amount
-            };
-
-            commandSender.SendCommand(resolvePaymentCommand, BoundedContexts.Payment);
-        }
-        
-        [UsedImplicitly]
-        public async Task Handle(PaymentResolvedEvent evt, ICommandSender commandSender)
-        {
-            _log.WriteInfo(nameof(PaymentResolvedEvent), evt.ClientId, $"Payment resolved: {evt.ToJson()}");
-
+            var assetToPayId = await _paymentResolver.Resolve(evt.AssetId);
+            
             var processPaymentCommand = new ProcessPaymentCommand
             {
                 Id = evt.Id,
                 ClientId = evt.ClientId,
-                AssetId = evt.AssetId,
+                AssetId = assetToPayId,
                 Amount = evt.Amount
             };
 

@@ -16,13 +16,13 @@ namespace Lykke.Job.ForwardWithdrawalResolver.PeriodicalHandlers
         private readonly TimeSpan _triggerSpan;
         private readonly IForwardWithdrawalRepository _repository;
         private readonly ILog _log;
-        
+
         public PaymentDuePeriodicalHandler(
             ILog log,
             ICqrsEngine cqrsEngine,
             TimeSpan triggerSpan,
             IForwardWithdrawalRepository repository) :
-            base(nameof(PaymentDuePeriodicalHandler), (int)TimeSpan.FromMinutes(1).TotalMilliseconds, log)
+            base(nameof(PaymentDuePeriodicalHandler), (int) TimeSpan.FromMinutes(1).TotalMilliseconds, log)
         {
             _log = log;
             _cqrsEngine = cqrsEngine;
@@ -34,23 +34,16 @@ namespace Lykke.Job.ForwardWithdrawalResolver.PeriodicalHandlers
         {
             foreach (var forwardWithdrawal in await _repository.GetAllAsync())
             {
-                try
+                if (forwardWithdrawal.IsDue(_triggerSpan))
                 {
-                    if (forwardWithdrawal.IsDue(_triggerSpan))
-                    {
-                        _cqrsEngine.SendCommand(
-                            new RemoveEntryCommand
-                            {
-                                ClientId = forwardWithdrawal.ClientId,
-                                Id = forwardWithdrawal.Id
-                            },
-                            BoundedContexts.Payment,
-                            BoundedContexts.Payment);
-                    }
-                }
-                catch (Exception e)
-                {
-                    _log.WriteError(nameof(PaymentDuePeriodicalHandler), forwardWithdrawal, e);
+                    _cqrsEngine.SendCommand(
+                        new RemoveEntryCommand
+                        {
+                            ClientId = forwardWithdrawal.ClientId,
+                            Id = forwardWithdrawal.Id
+                        },
+                        BoundedContexts.Payment,
+                        BoundedContexts.Payment);
                 }
             }
         }

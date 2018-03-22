@@ -12,5 +12,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Settings.JobSettings
         public bool ResolveAssetToItselfByDefault { set; get; }
         public string HotWallet { set; get; }
         public int DaysToTrigger { set; get; }
+        public int CriticalDifferenceDays { set; get; }
+        public int JobPeriodMinutes { set; get; }
     }
 }

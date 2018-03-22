@@ -13,6 +13,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.AzureRepositories
         double Amount { get; }
         DateTime DateTime { get; }
         string CashInId { get; }
+        DateTimeOffset Timestamp { get; }
     }
 
     public class ForwardWithdrawal : IForwardWithdrawal
@@ -23,6 +24,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.AzureRepositories
         public double Amount { get; set; }
         public DateTime DateTime { get; set; }
         public string CashInId { get; set; }
+        public DateTimeOffset Timestamp { get; set; }
     }
 
     public interface IForwardWithdrawalRepository

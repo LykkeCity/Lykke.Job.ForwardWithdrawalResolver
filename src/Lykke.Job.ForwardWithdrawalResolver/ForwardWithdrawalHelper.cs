@@ -13,7 +13,9 @@ namespace Lykke.Job.ForwardWithdrawalResolver
         //This method is used to raise awareness in case difference between DateTime and Timestamp is too big
         public static bool DateTimeTimestampDifferenceTooBig(this IForwardWithdrawal withdrawal, TimeSpan critical)
         {
-            return withdrawal.Timestamp.UtcDateTime - withdrawal.DateTime > critical;
+            return withdrawal.Timestamp.UtcDateTime >= withdrawal.DateTime
+                ? withdrawal.Timestamp.UtcDateTime - withdrawal.DateTime > critical
+                : withdrawal.DateTime - withdrawal.Timestamp.UtcDateTime > critical;
         }
     }
 }

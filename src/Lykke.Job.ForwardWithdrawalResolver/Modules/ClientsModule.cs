@@ -1,10 +1,13 @@
-﻿using Autofac;
+﻿using System;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Common.Log;
 using Lykke.Job.ForwardWithdrawalResolver.Settings;
 using Lykke.Job.ForwardWithdrawalResolver.Settings.JobSettings;
 using Lykke.Job.OperationsCache.Client;
 using Lykke.Service.ExchangeOperations.Client;
 using Lykke.Service.OperationsHistory.Client;
+using Lykke.Service.Assets.Client;
 using Lykke.SettingsReader;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -36,6 +39,11 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Modules
                     new ExchangeOperationsServiceClient(_settings.ExchangeOperationsServiceClient.ServiceUrl))
                 .As<IExchangeOperationsServiceClient>()
                 .SingleInstance();
+            
+            _services.RegisterAssetsClient(AssetServiceSettings.Create(new Uri(_settings.AssetsServiceClient.ServiceUrl),
+                TimeSpan.FromMinutes(1)));
+            
+            builder.Populate(_services);
         }
     }
 }

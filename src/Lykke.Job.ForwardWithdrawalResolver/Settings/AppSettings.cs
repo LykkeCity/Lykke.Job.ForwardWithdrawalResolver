@@ -11,6 +11,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Settings
     public class AppSettings
     {
         public ForwardWithdrawalResolverSettings ForwardWithdrawalResolverJob { get; set; }
+        public AssetsServiceClientSettings AssetsServiceClient { get; set; }
         public OperationsHistoryServiceClientSettings OperationsHistoryServiceClient { get; set; }
         public OperationsCacheServiceClientSettings OperationsCacheJobClient { get; set; }
         public ExchangeOperationsServiceClientSettings ExchangeOperationsServiceClient { get; set; }

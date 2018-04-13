@@ -69,7 +69,6 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Modules
             
             
             builder.RegisterType<PaymentDuePeriodicalHandler>()
-                .WithParameter("triggerSpan", TimeSpan.FromDays(_settings.ForwardWithdrawalResolverJob.DaysToTrigger))
                 .WithParameter("criticalSpan", TimeSpan.FromDays(_settings.ForwardWithdrawalResolverJob.CriticalDifferenceDays))
                 .WithParameter("jobTriggerSpan", TimeSpan.FromMinutes(_settings.ForwardWithdrawalResolverJob.JobPeriodMinutes))
                 .As<IStartable>()

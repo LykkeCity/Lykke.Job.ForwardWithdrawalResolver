@@ -76,10 +76,11 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
                 _log.WriteInfo(nameof(RemoveEntryFromHistoryServiceCommand), command.ClientId,
                     $"Beginning to process: {command.ToJson()}");
                 
-                if(command.CashInId == null)
-                    throw new InvalidOperationException($"CashInId of {command.Id} FW should not be null");
-
-                await _operationsHistoryClient.DeleteByClientIdOperationId(command.ClientId, command.CashInId);
+                if(command.CashInId != null)
+                    await _operationsHistoryClient.DeleteByClientIdOperationId(command.ClientId, command.CashInId);
+                else
+                    _log.WriteWarning(nameof(RemoveEntryFromHistoryServiceCommand), command.ClientId,
+                        $"CashInId absent: {command.ToJson()}");
 
                 eventPublisher.PublishEvent(new CashInRemovedFromHistoryServiceEvent
                 {
@@ -109,10 +110,11 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
                 _log.WriteInfo(nameof(RemoveEntryFromHistoryJobCommand), command.ClientId,
                     $"Beginning to process: {command.ToJson()}");
 
-                if (command.CashInId == null)
-                    throw new InvalidOperationException($"CashInId of {command.Id} FW should not be null");
-
-                await _operationsCacheClient.RemoveCashInIfExists(command.ClientId, command.CashInId);
+                if (command.CashInId != null)
+                    await _operationsCacheClient.RemoveCashInIfExists(command.ClientId, command.CashInId);
+                else
+                    _log.WriteWarning(nameof(RemoveEntryFromHistoryServiceCommand), command.ClientId,
+                        $"CashInId absent: {command.ToJson()}");
 
                 eventPublisher.PublishEvent(new CashInRemovedFromHistoryJobEvent
                 {
@@ -141,14 +143,12 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
             try
             {
                 var result = await _exchangeOperationsService.TransferAsync(
-                    command.ClientId,
-                    _hotWalletId,
-                    command.Amount,
-                    command.AssetId,
-                    "Common",
-                    null,
-                    null,
-                    command.Id);
+                    destClientId: command.ClientId,
+                    sourceClientId: _hotWalletId,
+                    amount: command.Amount,
+                    assetId: command.AssetId,
+                    transferTypeCode: "Common",
+                    transactionId: command.Id);
 
                 if (result.IsOk())
                 {

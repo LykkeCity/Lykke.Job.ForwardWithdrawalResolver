@@ -16,15 +16,13 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Modules
     public class ClientsModule : Module
     {
         private readonly AppSettings _settings;
-        private readonly IReloadingManager<DbSettings> _dbSettingsManager;
         private readonly ILog _log;
         private readonly IServiceCollection _services;
 
-        public ClientsModule(AppSettings settings, IReloadingManager<DbSettings> dbSettingsManager, ILog log)
+        public ClientsModule(AppSettings settings, ILog log)
         {
             _settings = settings;
             _log = log;
-            _dbSettingsManager = dbSettingsManager;
 
             _services = new ServiceCollection();
         }
@@ -40,8 +38,11 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Modules
                 .As<IExchangeOperationsServiceClient>()
                 .SingleInstance();
             
-            _services.RegisterAssetsClient(AssetServiceSettings.Create(new Uri(_settings.AssetsServiceClient.ServiceUrl),
-                TimeSpan.FromMinutes(1)));
+            _services.RegisterAssetsClient(
+                AssetServiceSettings.Create(
+                    new Uri(_settings.AssetsServiceClient.ServiceUrl),
+                    TimeSpan.FromMinutes(1)),
+                _log);
             
             builder.Populate(_services);
         }

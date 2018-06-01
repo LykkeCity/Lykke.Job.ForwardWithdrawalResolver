@@ -7,6 +7,6 @@
     <ProjectReference Include="..\Lykke.Job.ForwardWithdrawalResolver.Core\Lykke.Job.ForwardWithdrawalResolver.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Lykke.AzureStorage" Version="8.2.0" />
+    <PackageReference Include="Lykke.AzureStorage" Version="8.4.1" />
   </ItemGroup>
 </Project>

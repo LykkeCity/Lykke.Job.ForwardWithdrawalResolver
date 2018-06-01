@@ -76,7 +76,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
                 _log.WriteInfo(nameof(RemoveEntryFromHistoryServiceCommand), command.ClientId,
                     $"Beginning to process: {command.ToJson()}");
                 
-                if(command.CashInId != null)
+                if(!string.IsNullOrWhiteSpace(command.CashInId))
                     await _operationsHistoryClient.DeleteByClientIdOperationId(command.ClientId, command.CashInId);
                 else
                     _log.WriteWarning(nameof(RemoveEntryFromHistoryServiceCommand), command.ClientId,
@@ -110,7 +110,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
                 _log.WriteInfo(nameof(RemoveEntryFromHistoryJobCommand), command.ClientId,
                     $"Beginning to process: {command.ToJson()}");
 
-                if (command.CashInId != null)
+                if (!string.IsNullOrWhiteSpace(command.CashInId))
                     await _operationsCacheClient.RemoveCashInIfExists(command.ClientId, command.CashInId);
                 else
                     _log.WriteWarning(nameof(RemoveEntryFromHistoryServiceCommand), command.ClientId,

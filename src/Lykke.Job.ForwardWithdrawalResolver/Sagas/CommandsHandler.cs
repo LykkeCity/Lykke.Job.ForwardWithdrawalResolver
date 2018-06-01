@@ -76,10 +76,8 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
                 _log.WriteInfo(nameof(RemoveEntryFromHistoryServiceCommand), command.ClientId,
                     $"Beginning to process: {command.ToJson()}");
                 
-                if(command.CashInId == null)
-                    throw new InvalidOperationException($"CashInId of {command.Id} FW should not be null");
-
-                await _operationsHistoryClient.DeleteByClientIdOperationId(command.ClientId, command.CashInId);
+                if(command.CashInId != null)
+                    await _operationsHistoryClient.DeleteByClientIdOperationId(command.ClientId, command.CashInId);
 
                 eventPublisher.PublishEvent(new CashInRemovedFromHistoryServiceEvent
                 {
@@ -109,10 +107,8 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
                 _log.WriteInfo(nameof(RemoveEntryFromHistoryJobCommand), command.ClientId,
                     $"Beginning to process: {command.ToJson()}");
 
-                if (command.CashInId == null)
-                    throw new InvalidOperationException($"CashInId of {command.Id} FW should not be null");
-
-                await _operationsCacheClient.RemoveCashInIfExists(command.ClientId, command.CashInId);
+                if (command.CashInId != null)
+                    await _operationsCacheClient.RemoveCashInIfExists(command.ClientId, command.CashInId);
 
                 eventPublisher.PublishEvent(new CashInRemovedFromHistoryJobEvent
                 {

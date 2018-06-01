@@ -137,14 +137,12 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
             try
             {
                 var result = await _exchangeOperationsService.TransferAsync(
-                    command.ClientId,
-                    _hotWalletId,
-                    command.Amount,
-                    command.AssetId,
-                    "Common",
-                    null,
-                    null,
-                    command.Id);
+                    destClientId: command.ClientId,
+                    sourceClientId: _hotWalletId,
+                    amount: command.Amount,
+                    assetId: command.AssetId,
+                    transferTypeCode: "Common",
+                    transactionId: command.Id);
 
                 if (result.IsOk())
                 {

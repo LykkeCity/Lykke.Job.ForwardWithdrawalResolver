@@ -19,18 +19,14 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Services
             _assetMappings = assetMappings;
             _resolveAssetToItselfByDefault = resolveAssetToItselfByDefault;
         }
-        
+
         public Task<string> Resolve(string assetId)
         {
             if (_assetMappings.ContainsKey(assetId))
-            {
                 return Task.FromResult(_assetMappings[assetId]);
-            }
 
             if (_resolveAssetToItselfByDefault)
-            {
                 return Task.FromResult(assetId);
-            }
 
             throw new ArgumentException($"Could not resolve {assetId}");
         }

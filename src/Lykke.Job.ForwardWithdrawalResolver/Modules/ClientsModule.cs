@@ -1,50 +1,44 @@
 ﻿using System;
 using Autofac;
-using Autofac.Extensions.DependencyInjection;
-using Common.Log;
 using Lykke.Job.ForwardWithdrawalResolver.Settings;
-using Lykke.Job.ForwardWithdrawalResolver.Settings.JobSettings;
 using Lykke.Job.OperationsCache.Client;
+using Lykke.Logs;
+using Lykke.Service.Assets.Client;
 using Lykke.Service.ExchangeOperations.Client;
 using Lykke.Service.OperationsHistory.Client;
-using Lykke.Service.Assets.Client;
 using Lykke.SettingsReader;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Lykke.Job.ForwardWithdrawalResolver.Modules
 {
     public class ClientsModule : Module
     {
-        private readonly AppSettings _settings;
-        private readonly ILog _log;
-        private readonly IServiceCollection _services;
+        private readonly IReloadingManager<AppSettings> _settings;
 
-        public ClientsModule(AppSettings settings, ILog log)
+        public ClientsModule(IReloadingManager<AppSettings> settings)
         {
             _settings = settings;
-            _log = log;
-
-            _services = new ServiceCollection();
         }
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterOperationsHistoryClient(_settings.OperationsHistoryServiceClient, _log);
-            builder.RegisterOperationsCacheClient(_settings.OperationsCacheJobClient, _log);
-            
+            var emptyLog = EmptyLogFactory.Instance.CreateLog(this);
+
+            builder.RegisterOperationsHistoryClient(_settings.CurrentValue.OperationsHistoryServiceClient, emptyLog);
+
+            builder.RegisterInstance(
+                    new OperationsCacheClient(_settings.CurrentValue.OperationsCacheJobClient.ServiceUrl, emptyLog))
+                .As<IOperationsCacheClient>();
+
             builder
                 .RegisterInstance(
-                    new ExchangeOperationsServiceClient(_settings.ExchangeOperationsServiceClient.ServiceUrl))
+                    new ExchangeOperationsServiceClient(_settings.CurrentValue.ExchangeOperationsServiceClient
+                        .ServiceUrl))
                 .As<IExchangeOperationsServiceClient>()
                 .SingleInstance();
-            
-            _services.RegisterAssetsClient(
-                AssetServiceSettings.Create(
-                    new Uri(_settings.AssetsServiceClient.ServiceUrl),
-                    TimeSpan.FromMinutes(1)),
-                _log);
-            
-            builder.Populate(_services);
+
+            builder.RegisterAssetsClient(AssetServiceSettings.Create(
+                new Uri(_settings.CurrentValue.AssetsServiceClient.ServiceUrl),
+                TimeSpan.FromMinutes(60)));
         }
     }
 }

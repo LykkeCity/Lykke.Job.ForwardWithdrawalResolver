@@ -21,8 +21,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.PeriodicalHandlers
         private const string DaysToTriggerCouldNotBeResolvedErrorMessage =
             "Will not process: could not resolve forward asset for {0}";
 
-        private readonly IAssetsService _assetsService;
-
+        private readonly IAssetsServiceWithCache _assetsServiceWithCache;
         private readonly ICqrsEngine _cqrsEngine;
         private readonly TimeSpan _criticalSpan;
         private readonly ILog _log;
@@ -30,7 +29,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.PeriodicalHandlers
 
         public PaymentDuePeriodicalHandler(
             ILogFactory logFactory,
-            IAssetsService assetsService,
+            IAssetsServiceWithCache assetsServiceWithCache,
             ICqrsEngine cqrsEngine,
             TimeSpan criticalSpan,
             TimeSpan jobTriggerSpan,
@@ -38,7 +37,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.PeriodicalHandlers
             base(TimeSpan.FromMilliseconds(jobTriggerSpan.TotalMilliseconds), logFactory)
         {
             _log = logFactory.CreateLog(this);
-            _assetsService = assetsService;
+            _assetsServiceWithCache = assetsServiceWithCache;
             _cqrsEngine = cqrsEngine;
             _criticalSpan = criticalSpan;
             _repository = repository;
@@ -46,13 +45,10 @@ namespace Lykke.Job.ForwardWithdrawalResolver.PeriodicalHandlers
 
         public override async Task Execute()
         {
-            var assets = await _assetsService.AssetGetAllAsync();
-
             foreach (var forwardWithdrawal in await _repository.GetAllAsync())
                 try
                 {
-                    var daysToTrigger = assets.FirstOrDefault(x => x.Id == forwardWithdrawal.AssetId)
-                        ?.ForwardFrozenDays;
+                    var daysToTrigger = (await _assetsServiceWithCache.TryGetAssetAsync(forwardWithdrawal.AssetId))?.ForwardFrozenDays;
 
                     if (!daysToTrigger.HasValue)
                         throw new InvalidOperationException(string.Format(DaysToTriggerCouldNotBeResolvedErrorMessage,

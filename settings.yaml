@@ -1,0 +1,51 @@
+ForwardWithdrawalResolverJob:
+    Db: 
+        ForwardWithdrawalsConnString:
+            settings-key: ForwardWithdrawalResolverJob-ForwardWithdrawalsConnString
+            types:
+                - AzureTableStorage
+        LogsConnString:
+            settings-key: ForwardWithdrawalResolverJob-LogsConnString
+            types:
+                - AzureTableStorage
+    Cqrs:
+        RabbitConnString:
+            settings-key: CqrsRabbitConnString
+            types:
+                - RabbitMq
+    ResolveAssetToItselfByDefault:
+        settings-key: ForwardWithdrawalResolverJob-ResolveAssetToItselfByDefault
+    HotWallet:
+        settings-key: ForwardWithdrawalResolverJob-HotWallet
+    CriticalDifferenceDays:
+        settings-key: ForwardWithdrawalResolverJob-CriticalDifferenceDays
+    JobPeriodMinutes:
+        settings-key: ForwardWithdrawalResolverJob-JobPeriodMinutes
+    AssetMappings:
+        settings-key: ForwardWithdrawalResolverJob-AssetMappings
+        types:
+            - Json
+ExchangeOperationsServiceClient:
+    ServiceUrl:
+        settings-key: ExchangeOperationsServiceUrl
+AssetsServiceClient:
+    ServiceUrl:
+        settings-key: AssetsServiceUrl
+OperationsCacheJobClient:
+    ServiceUrl:
+        settings-key: OperationsCacheJobUrl
+OperationsHistoryServiceClient:
+    ServiceUrl:
+        settings-key: OperationsHistoryServiceUrl
+MonitoringServiceClient:
+    MonitoringServiceUrl:
+        settings-key: MonitoringServiceUrl
+SlackNotifications:
+    AzureQueue:
+        ConnectionString:
+            settings-key: SlackNotificationsConnString
+            types:
+                - AzureTableStorage
+        QueueName:
+            settings-key: SlackQueueName
+   

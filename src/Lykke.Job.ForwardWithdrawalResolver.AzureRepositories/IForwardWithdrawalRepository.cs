@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -13,6 +12,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.AzureRepositories
         double Amount { get; }
         DateTime DateTime { get; }
         string CashInId { get; }
+        string CashOutId { get; }
         DateTimeOffset Timestamp { get; }
     }
 
@@ -24,6 +24,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.AzureRepositories
         public double Amount { get; set; }
         public DateTime DateTime { get; set; }
         public string CashInId { get; set; }
+        public string CashOutId { get; set; }
         public DateTimeOffset Timestamp { get; set; }
     }
 
@@ -31,6 +32,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.AzureRepositories
     {
         Task<List<IForwardWithdrawal>> GetAllAsync();
         Task<IForwardWithdrawal> TryGetAsync(string clientId, string id);
+        Task<IForwardWithdrawal> TryGetByCashoutIdAsync(string clientId, string cashoutId);
         Task<bool> DeleteIfExistsAsync(string clientId, string id);
     }
 }

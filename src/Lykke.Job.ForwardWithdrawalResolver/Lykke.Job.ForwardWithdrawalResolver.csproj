@@ -24,7 +24,7 @@
     <PackageReference Include="Lykke.MatchingEngineConnector.Abstractions" Version="6.0.3" />
     <PackageReference Include="Lykke.Service.Assets.Client" Version="4.4.0" />
     <PackageReference Include="Lykke.Service.ExchangeOperations.Client" Version="1.1.20" />
-    <PackageReference Include="Lykke.Service.History.Contracts" Version="1.0.3-beta1" />
+    <PackageReference Include="Lykke.Service.History.Contracts" Version="1.0.3" />
     <PackageReference Include="Lykke.Service.OperationsHistory.Client" Version="2.1.0" />
     <PackageReference Include="Lykke.Service.PostProcessing.Contracts" Version="1.7.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.1.2" />

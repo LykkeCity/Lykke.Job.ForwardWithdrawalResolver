@@ -19,6 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Job.ForwardWithdrawal
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lykke.Job.ForwardWithdrawalResolver.Tests", "tests\Lykke.Job.ForwardWithdrawalResolver.Tests\Lykke.Job.ForwardWithdrawalResolver.Tests.csproj", "{AAC9F450-14D7-4482-BC12-7C55006864E2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{43227B77-5983-4910-9E07-DC2B6A17D65F}"
+	ProjectSection(SolutionItems) = preProject
+		settings.yaml = settings.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

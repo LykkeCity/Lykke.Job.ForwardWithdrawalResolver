@@ -2,7 +2,7 @@
 
 namespace Lykke.Job.ForwardWithdrawalResolver.Sagas.Commands
 {
-    [MessagePackObject(keyAsPropertyName: true)]
+    [MessagePackObject(true)]
     public class RemoveEntryFromHistoryServiceCommand
     {
         public string Id { set; get; }

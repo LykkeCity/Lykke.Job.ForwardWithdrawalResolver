@@ -8,6 +8,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Settings.JobSettings
     {
         [AzureTableCheck]
         public string LogsConnString { get; set; }
+
         [AzureTableCheck]
         public string ForwardWithdrawalsConnString { get; set; }
     }

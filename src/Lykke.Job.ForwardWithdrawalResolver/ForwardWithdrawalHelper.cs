@@ -9,7 +9,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver
         {
             return DateTime.UtcNow - withdrawal.DateTime > triggerSpan;
         }
-        
+
         //This method is used to raise awareness in case difference between DateTime and Timestamp is too big
         public static bool DateTimeTimestampDifferenceTooBig(this IForwardWithdrawal withdrawal, TimeSpan critical)
         {

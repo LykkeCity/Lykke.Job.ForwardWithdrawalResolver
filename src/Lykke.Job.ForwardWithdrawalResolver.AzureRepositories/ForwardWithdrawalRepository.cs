@@ -1,14 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AzureStorage;
-using Common.Log;
 using Microsoft.WindowsAzure.Storage.Table;
 
 namespace Lykke.Job.ForwardWithdrawalResolver.AzureRepositories
 {
     public class ForwardWithdrawalEntity : TableEntity, IForwardWithdrawal
     {
+        public string Id { get; set; }
+        public string AssetId { get; set; }
+        public string ClientId { get; set; }
+        public double Amount { get; set; }
+        public DateTime DateTime { get; set; }
+        public string CashInId { get; set; }
+        public string CashOutId { get; set; }
+
         public static string GeneratePartitionKey(string clientId)
         {
             return clientId;
@@ -18,13 +26,6 @@ namespace Lykke.Job.ForwardWithdrawalResolver.AzureRepositories
         {
             return id;
         }
-
-        public string Id { get; set; }
-        public string AssetId { get; set; }
-        public string ClientId { get; set; }
-        public double Amount { get; set; }
-        public DateTime DateTime { get; set; }
-        public string CashInId { get; set; }
     }
 
     public class ForwardWithdrawalRepository : IForwardWithdrawalRepository
@@ -39,7 +40,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.AzureRepositories
         public async Task<List<IForwardWithdrawal>> GetAllAsync()
         {
             var entities = new List<IForwardWithdrawal>();
-            
+
             await _tableStorage.GetDataByChunksAsync(new TableQuery<ForwardWithdrawalEntity>(),
                 enumerable =>
                 {
@@ -57,6 +58,13 @@ namespace Lykke.Job.ForwardWithdrawalResolver.AzureRepositories
             return await _tableStorage.GetDataAsync(
                 ForwardWithdrawalEntity.GeneratePartitionKey(clientId),
                 ForwardWithdrawalEntity.GenerateRowKey(id));
+        }
+
+        public async Task<IForwardWithdrawal> TryGetByCashoutIdAsync(string clientId, string cashoutId)
+        {
+            var byClientId = await _tableStorage.GetDataAsync(ForwardWithdrawalEntity.GeneratePartitionKey(clientId));
+
+            return byClientId.FirstOrDefault(x => x.CashOutId == cashoutId);
         }
 
         public Task<bool> DeleteIfExistsAsync(string clientId, string id)

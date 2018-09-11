@@ -40,14 +40,16 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
                 }
 
                 var asset = await _assetsServiceWithCache.TryGetAssetAsync(record.AssetId);
+                var forwardAsset = await _assetsServiceWithCache.TryGetAssetAsync(asset.ForwardBaseAsset);
+
                 var settlementDate = record.DateTime.AddDays(asset.ForwardFrozenDays);
 
                 commandSender.SendCommand(new CreateForwardCashinCommand
                 {
-                    AssetId = record.AssetId,
+                    AssetId = forwardAsset.Id,
                     OperationId = cashinId,
                     Timestamp = settlementDate,
-                    Volume = Math.Abs(cashOutProcessedEvent.Volume),
+                    Volume = Math.Abs(cashOutProcessedEvent.Volume).TruncateDecimalPlaces(forwardAsset.Accuracy),
                     WalletId = cashOutProcessedEvent.WalletId
                 }, HistoryBoundedContext.Name);
             }

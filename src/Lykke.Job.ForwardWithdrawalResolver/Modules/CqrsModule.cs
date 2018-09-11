@@ -111,7 +111,6 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Modules
                         typeof(PaymentEntryRemovedEvent),
                         typeof(CashInRemovedFromHistoryJobEvent),
                         typeof(CashInRemovedFromHistoryServiceEvent),
-                        typeof(PaymentEntryRemovedEvent),
                         typeof(CashInProcesedEvent))
                     .With(defaultPipeline)
                     .WithCommandsHandler(typeof(CommandsHandler)),

@@ -6,6 +6,7 @@ using JetBrains.Annotations;
 using Lykke.Common.Log;
 using Lykke.Cqrs;
 using Lykke.Job.ForwardWithdrawalResolver.AzureRepositories;
+using Lykke.Service.Assets.Client;
 using Lykke.Service.History.Contracts.Cqrs;
 using Lykke.Service.History.Contracts.Cqrs.Commands;
 using Lykke.Service.PostProcessing.Contracts.Cqrs.Events;
@@ -17,10 +18,12 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
     {
         private readonly ILog _log;
         private readonly IForwardWithdrawalRepository _repository;
+        private readonly IAssetsServiceWithCache _assetsServiceWithCache;
 
-        public CashoutsSaga(IForwardWithdrawalRepository repository, ILogFactory logFactory)
+        public CashoutsSaga(IForwardWithdrawalRepository repository, ILogFactory logFactory, IAssetsServiceWithCache assetsServiceWithCache)
         {
             _repository = repository;
+            _assetsServiceWithCache = assetsServiceWithCache;
             _log = logFactory.CreateLog(this);
         }
 
@@ -36,12 +39,17 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
                     return;
                 }
 
+                var asset = await _assetsServiceWithCache.TryGetAssetAsync(record.AssetId);
+                var forwardAsset = await _assetsServiceWithCache.TryGetAssetAsync(asset.ForwardBaseAsset);
+
+                var settlementDate = record.DateTime.AddDays(asset.ForwardFrozenDays);
+
                 commandSender.SendCommand(new CreateForwardCashinCommand
                 {
-                    AssetId = record.AssetId,
+                    AssetId = forwardAsset.Id,
                     OperationId = cashinId,
-                    Timestamp = record.DateTime,
-                    Volume = Math.Abs(cashOutProcessedEvent.Volume),
+                    Timestamp = settlementDate,
+                    Volume = Math.Abs(cashOutProcessedEvent.Volume).TruncateDecimalPlaces(forwardAsset.Accuracy),
                     WalletId = cashOutProcessedEvent.WalletId
                 }, HistoryBoundedContext.Name);
             }

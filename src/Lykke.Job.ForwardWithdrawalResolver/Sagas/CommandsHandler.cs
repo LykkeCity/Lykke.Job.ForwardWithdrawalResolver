@@ -10,6 +10,7 @@ using Lykke.Job.ForwardWithdrawalResolver.Sagas.Commands;
 using Lykke.Job.ForwardWithdrawalResolver.Sagas.Events;
 using Lykke.Job.OperationsCache.Client;
 using Lykke.MatchingEngine.Connector.Abstractions.Models;
+using Lykke.Service.Assets.Client;
 using Lykke.Service.ExchangeOperations.Client;
 using Lykke.Service.OperationsHistory.Client;
 
@@ -23,13 +24,15 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
         private readonly IOperationsCacheClient _operationsCacheClient;
         private readonly IOperationsHistoryClient _operationsHistoryClient;
         private readonly IForwardWithdrawalRepository _repository;
+        private readonly IAssetsServiceWithCache _assetsServiceWithCache;
 
         public CommandsHandler(ILogFactory logFactory,
             IForwardWithdrawalRepository repository,
             IExchangeOperationsServiceClient exchangeOperationsService,
             IOperationsCacheClient operationsCacheClient,
             IOperationsHistoryClient operationsHistoryClient,
-            string hotWalletId)
+            string hotWalletId,
+            IAssetsServiceWithCache assetsServiceWithCache)
         {
             _log = logFactory.CreateLog(this);
             _repository = repository;
@@ -37,6 +40,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
             _operationsHistoryClient = operationsHistoryClient;
             _operationsCacheClient = operationsCacheClient;
             _hotWalletId = hotWalletId;
+            _assetsServiceWithCache = assetsServiceWithCache;
         }
 
         [UsedImplicitly]
@@ -127,10 +131,12 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
         {
             try
             {
+                var asset = await _assetsServiceWithCache.TryGetAssetAsync(command.AssetId);
+
                 var result = await _exchangeOperationsService.TransferAsync(
                     command.ClientId,
                     _hotWalletId,
-                    command.Amount,
+                    command.Amount.TruncateDecimalPlaces(asset.Accuracy),
                     command.AssetId,
                     "Common",
                     transactionId: command.Id);
@@ -148,7 +154,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
                     return CommandHandlingResult.Ok();
                 }
 
-                if (result.Code == (int) MeStatusCodes.Duplicate)
+                if (result.Code == (int)MeStatusCodes.Duplicate)
                 {
                     _log.Warning($"Duplicate transfer attempt: {command.ToJson()}");
 

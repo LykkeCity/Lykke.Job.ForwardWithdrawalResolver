@@ -1,4 +1,5 @@
-﻿using MessagePack;
+﻿using System;
+using MessagePack;
 
 namespace Lykke.Job.ForwardWithdrawalResolver.Sagas.Commands
 {
@@ -9,5 +10,6 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas.Commands
         public string ClientId { set; get; }
         public string AssetId { set; get; }
         public double Amount { set; get; }
+        public Guid NewCashinId { get; set; }
     }
 }

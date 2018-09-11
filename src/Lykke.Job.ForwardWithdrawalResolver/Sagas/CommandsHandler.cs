@@ -139,7 +139,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
                     command.Amount.TruncateDecimalPlaces(asset.Accuracy),
                     command.AssetId,
                     "Common",
-                    transactionId: command.Id);
+                    transactionId: command.NewCashinId.ToString());
 
                 if (result.IsOk())
                 {

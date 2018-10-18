@@ -148,7 +148,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
                     eventPublisher.PublishEvent(new CashInProcesedEvent
                     {
                         ClientId = command.ClientId,
-                        OperationId = command.Id
+                        OperationId = command.CashinId
                     });
 
                     return CommandHandlingResult.Ok();

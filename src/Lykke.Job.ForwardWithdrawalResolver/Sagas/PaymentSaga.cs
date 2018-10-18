@@ -67,7 +67,8 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
                 ClientId = evt.ClientId,
                 AssetId = assetToPayId,
                 Amount = evt.Amount,
-                NewCashinId = Guid.NewGuid()
+                NewCashinId = Guid.NewGuid(),
+                CashinId = evt.CashInId
             };
 
             commandSender.SendCommand(processPaymentCommand, BoundedContext.ForwardWithdrawal);

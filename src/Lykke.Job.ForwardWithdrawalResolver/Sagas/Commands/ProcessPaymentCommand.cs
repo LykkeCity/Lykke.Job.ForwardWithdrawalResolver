@@ -11,5 +11,6 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas.Commands
         public string AssetId { set; get; }
         public double Amount { set; get; }
         public Guid NewCashinId { get; set; }
+        public string CashinId { get; set; }
     }
 }

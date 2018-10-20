@@ -29,7 +29,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
         [UsedImplicitly]
         public async Task Handle(PaymentEntryRemovedEvent evt, ICommandSender commandSender)
         {
-            var removeEntryFromHistoryServiceCommand = new RemoveEntryFromHistoryServiceCommand
+            var removeEntryFromHistoryJobCommand = new RemoveEntryFromHistoryJobCommand
             {
                 Id = evt.Id,
                 ClientId = evt.ClientId,
@@ -38,7 +38,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
                 CashInId = evt.CashInId
             };
 
-            commandSender.SendCommand(removeEntryFromHistoryServiceCommand, BoundedContext.ForwardWithdrawal);
+            commandSender.SendCommand(removeEntryFromHistoryJobCommand, BoundedContext.ForwardWithdrawal);
         }
 
         [UsedImplicitly]

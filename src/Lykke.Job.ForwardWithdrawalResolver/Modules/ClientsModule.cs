@@ -5,7 +5,6 @@ using Lykke.Job.OperationsCache.Client;
 using Lykke.Logs;
 using Lykke.Service.Assets.Client;
 using Lykke.Service.ExchangeOperations.Client;
-using Lykke.Service.OperationsHistory.Client;
 using Lykke.SettingsReader;
 
 namespace Lykke.Job.ForwardWithdrawalResolver.Modules
@@ -22,8 +21,6 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Modules
         protected override void Load(ContainerBuilder builder)
         {
             var emptyLog = EmptyLogFactory.Instance.CreateLog(this);
-
-            builder.RegisterOperationsHistoryClient(_settings.CurrentValue.OperationsHistoryServiceClient, emptyLog);
 
             builder.RegisterInstance(
                     new OperationsCacheClient(_settings.CurrentValue.OperationsCacheJobClient.ServiceUrl, emptyLog))

@@ -12,7 +12,6 @@ using Lykke.Job.OperationsCache.Client;
 using Lykke.MatchingEngine.Connector.Abstractions.Models;
 using Lykke.Service.Assets.Client;
 using Lykke.Service.ExchangeOperations.Client;
-using Lykke.Service.OperationsHistory.Client;
 
 namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
 {
@@ -22,7 +21,6 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
         private readonly string _hotWalletId;
         private readonly ILog _log;
         private readonly IOperationsCacheClient _operationsCacheClient;
-        private readonly IOperationsHistoryClient _operationsHistoryClient;
         private readonly IForwardWithdrawalRepository _repository;
         private readonly IAssetsServiceWithCache _assetsServiceWithCache;
 
@@ -30,14 +28,12 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
             IForwardWithdrawalRepository repository,
             IExchangeOperationsServiceClient exchangeOperationsService,
             IOperationsCacheClient operationsCacheClient,
-            IOperationsHistoryClient operationsHistoryClient,
             string hotWalletId,
             IAssetsServiceWithCache assetsServiceWithCache)
         {
             _log = logFactory.CreateLog(this);
             _repository = repository;
             _exchangeOperationsService = exchangeOperationsService;
-            _operationsHistoryClient = operationsHistoryClient;
             _operationsCacheClient = operationsCacheClient;
             _hotWalletId = hotWalletId;
             _assetsServiceWithCache = assetsServiceWithCache;
@@ -72,11 +68,6 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
         {
             try
             {
-                if (!string.IsNullOrWhiteSpace(command.CashInId))
-                    await _operationsHistoryClient.DeleteByClientIdOperationId(command.ClientId, command.CashInId);
-                else
-                    _log.Warning($"CashInId absent: {command.ToJson()}");
-
                 eventPublisher.PublishEvent(new CashInRemovedFromHistoryServiceEvent
                 {
                     Id = command.Id,

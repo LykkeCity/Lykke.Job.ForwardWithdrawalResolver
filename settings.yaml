@@ -31,9 +31,6 @@ ExchangeOperationsServiceClient:
 AssetsServiceClient:
     ServiceUrl:
         settings-key: AssetsServiceUrl
-OperationsCacheJobClient:
-    ServiceUrl:
-        settings-key: OperationsCacheJobUrl
 MonitoringServiceClient:
     MonitoringServiceUrl:
         settings-key: MonitoringServiceUrl

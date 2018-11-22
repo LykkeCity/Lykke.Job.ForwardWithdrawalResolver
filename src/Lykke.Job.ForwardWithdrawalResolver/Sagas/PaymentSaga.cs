@@ -29,31 +29,37 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
         [UsedImplicitly]
         public async Task Handle(PaymentEntryRemovedEvent evt, ICommandSender commandSender)
         {
-            var removeEntryFromHistoryServiceCommand = new RemoveEntryFromHistoryServiceCommand
+            var assetToPayId = await _paymentResolver.Resolve(evt.AssetId);
+
+            var processPaymentCommand = new ProcessPaymentCommand
             {
                 Id = evt.Id,
                 ClientId = evt.ClientId,
-                AssetId = evt.AssetId,
+                AssetId = assetToPayId,
                 Amount = evt.Amount,
-                CashInId = evt.CashInId
+                NewCashinId = Guid.NewGuid(),
+                CashinId = evt.CashInId
             };
 
-            commandSender.SendCommand(removeEntryFromHistoryServiceCommand, BoundedContext.ForwardWithdrawal);
+            commandSender.SendCommand(processPaymentCommand, BoundedContext.ForwardWithdrawal);
         }
 
         [UsedImplicitly]
         public async Task Handle(CashInRemovedFromHistoryServiceEvent evt, ICommandSender commandSender)
         {
-            var removeEntryFromHistoryJobCommand = new RemoveEntryFromHistoryJobCommand
+            var assetToPayId = await _paymentResolver.Resolve(evt.AssetId);
+
+            var processPaymentCommand = new ProcessPaymentCommand
             {
                 Id = evt.Id,
                 ClientId = evt.ClientId,
-                AssetId = evt.AssetId,
+                AssetId = assetToPayId,
                 Amount = evt.Amount,
-                CashInId = evt.CashInId
+                NewCashinId = Guid.NewGuid(),
+                CashinId = evt.CashInId
             };
 
-            commandSender.SendCommand(removeEntryFromHistoryJobCommand, BoundedContext.ForwardWithdrawal);
+            commandSender.SendCommand(processPaymentCommand, BoundedContext.ForwardWithdrawal);
         }
 
         [UsedImplicitly]

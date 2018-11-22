@@ -16,7 +16,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Lykke.Job.OperationsCache.Client" Version="1.0.0" />
     <PackageReference Include="Lykke.Cqrs" Version="5.1.0" />
     <PackageReference Include="Lykke.Messaging" Version="6.0.1" />
     <PackageReference Include="Lykke.Messaging.RabbitMq" Version="2.1.0" />
@@ -25,7 +24,6 @@
     <PackageReference Include="Lykke.Service.Assets.Client" Version="4.4.0" />
     <PackageReference Include="Lykke.Service.ExchangeOperations.Client" Version="1.1.20" />
     <PackageReference Include="Lykke.Service.History.Contracts" Version="1.0.3" />
-    <PackageReference Include="Lykke.Service.OperationsHistory.Client" Version="2.1.0" />
     <PackageReference Include="Lykke.Service.PostProcessing.Contracts" Version="1.7.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.1" />

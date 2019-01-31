@@ -37,20 +37,9 @@ namespace Lykke.Job.ForwardWithdrawalResolver.AzureRepositories
             _tableStorage = tableStorage;
         }
 
-        public async Task<List<IForwardWithdrawal>> GetAllAsync()
+        public async Task ProcessByChunksAsync(Func<IEnumerable<IForwardWithdrawal>, Task> processHandler)
         {
-            var entities = new List<IForwardWithdrawal>();
-
-            await _tableStorage.GetDataByChunksAsync(new TableQuery<ForwardWithdrawalEntity>(),
-                enumerable =>
-                {
-                    lock (entities)
-                    {
-                        entities.AddRange(enumerable);
-                    }
-                });
-
-            return entities;
+            await _tableStorage.GetDataByChunksAsync(new TableQuery<ForwardWithdrawalEntity>(), processHandler);
         }
 
         public async Task<IForwardWithdrawal> TryGetAsync(string clientId, string id)

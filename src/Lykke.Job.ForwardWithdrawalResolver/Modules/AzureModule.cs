@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using System;
+using Autofac;
 using AzureStorage.Tables;
 using Lykke.Common.Log;
 using Lykke.Job.ForwardWithdrawalResolver.AzureRepositories;
@@ -24,7 +25,8 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Modules
                             _settings.ConnectionString(x =>
                                 x.ForwardWithdrawalResolverJob.Db.ForwardWithdrawalsConnString),
                             "ForwardWithdrawal",
-                            c.Resolve<ILogFactory>())))
+                            c.Resolve<ILogFactory>(),
+                            TimeSpan.FromSeconds(60))))
                 .SingleInstance();
         }
     }

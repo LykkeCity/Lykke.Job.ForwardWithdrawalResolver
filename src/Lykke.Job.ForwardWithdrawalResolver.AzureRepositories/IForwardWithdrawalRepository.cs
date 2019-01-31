@@ -30,7 +30,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.AzureRepositories
 
     public interface IForwardWithdrawalRepository
     {
-        Task<List<IForwardWithdrawal>> GetAllAsync();
+        Task ProcessByChunksAsync(Func<IEnumerable<IForwardWithdrawal>, Task> processHandler);
         Task<IForwardWithdrawal> TryGetAsync(string clientId, string id);
         Task<IForwardWithdrawal> TryGetByCashoutIdAsync(string clientId, string cashoutId);
         Task<bool> DeleteIfExistsAsync(string clientId, string id);

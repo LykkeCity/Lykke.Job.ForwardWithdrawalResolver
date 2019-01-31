@@ -1,7 +1,6 @@
 ﻿using System;
 using Autofac;
 using Lykke.Job.ForwardWithdrawalResolver.Settings;
-using Lykke.Logs;
 using Lykke.Service.Assets.Client;
 using Lykke.Service.ExchangeOperations.Client;
 using Lykke.SettingsReader;
@@ -19,12 +18,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Modules
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder
-                .RegisterInstance(
-                    new ExchangeOperationsServiceClient(_settings.CurrentValue.ExchangeOperationsServiceClient
-                        .ServiceUrl))
-                .As<IExchangeOperationsServiceClient>()
-                .SingleInstance();
+            builder.RegisterExchangeOperationsClient(_settings.CurrentValue.ExchangeOperationsServiceClient);
 
             builder.RegisterAssetsClient(AssetServiceSettings.Create(
                 new Uri(_settings.CurrentValue.AssetsServiceClient.ServiceUrl),

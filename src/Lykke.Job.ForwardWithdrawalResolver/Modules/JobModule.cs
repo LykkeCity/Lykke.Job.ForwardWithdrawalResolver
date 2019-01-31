@@ -5,6 +5,7 @@ using Lykke.Job.ForwardWithdrawalResolver.PeriodicalHandlers;
 using Lykke.Job.ForwardWithdrawalResolver.Services;
 using Lykke.Job.ForwardWithdrawalResolver.Settings;
 using Lykke.Job.ForwardWithdrawalResolver.Settings.JobSettings;
+using Lykke.Sdk;
 using Lykke.SettingsReader;
 
 namespace Lykke.Job.ForwardWithdrawalResolver.Modules
@@ -20,12 +21,15 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Modules
 
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<StartupManager>()
+                .As<IStartupManager>()
+                .SingleInstance();
+
             builder.RegisterInstance<IPaymentResolver>(
                     new PaymentResolver(
                         _settings.AssetMappings,
                         _settings.ResolveAssetToItselfByDefault))
                 .SingleInstance();
-
 
             builder.RegisterType<PaymentDuePeriodicalHandler>()
                 .WithParameter("criticalSpan", TimeSpan.FromDays(_settings.CriticalDifferenceDays))

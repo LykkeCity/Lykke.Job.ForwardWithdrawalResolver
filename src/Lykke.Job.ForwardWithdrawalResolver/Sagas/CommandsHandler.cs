@@ -11,6 +11,7 @@ using Lykke.Job.ForwardWithdrawalResolver.Sagas.Events;
 using Lykke.MatchingEngine.Connector.Abstractions.Models;
 using Lykke.Service.Assets.Client;
 using Lykke.Service.ExchangeOperations.Client;
+using Lykke.Service.ExchangeOperations.Client.Models;
 
 namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
 {
@@ -115,13 +116,16 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
             {
                 var asset = await _assetsServiceWithCache.TryGetAssetAsync(command.AssetId);
 
-                var result = await _exchangeOperationsService.TransferAsync(
-                    command.ClientId,
-                    _hotWalletId,
-                    command.Amount.TruncateDecimalPlaces(asset.Accuracy),
-                    command.AssetId,
-                    "Common",
-                    transactionId: command.NewCashinId.ToString());
+                var result = await _exchangeOperationsService.ExchangeOperations.TransferAsync(
+                    new TransferRequestModel
+                    {
+                        DestClientId = command.ClientId,
+                        SourceClientId = _hotWalletId,
+                        Amount = command.Amount.TruncateDecimalPlaces(asset.Accuracy),
+                        AssetId = command.AssetId,
+                        TransferTypeCode = "Common",
+                        OperationId = command.NewCashinId.ToString(),
+                    });
 
                 if (result.IsOk())
                 {

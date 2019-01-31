@@ -93,7 +93,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Modules
                 SerializationFormat.ProtoBuf,
                 environment: "lykke");
 
-            return new CqrsEngine(
+            var engine = new CqrsEngine(
                 logFactory,
                 ctx.Resolve<IDependencyResolver>(),
                 messagingEngine,
@@ -146,6 +146,10 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Modules
                     .PublishingCommands(typeof(RemoveEntryCommand))
                     .To(BoundedContext.ForwardWithdrawal)
                     .With(defaultPipeline));
+
+            engine.StartPublishers();
+
+            return engine;
         }
     }
 }

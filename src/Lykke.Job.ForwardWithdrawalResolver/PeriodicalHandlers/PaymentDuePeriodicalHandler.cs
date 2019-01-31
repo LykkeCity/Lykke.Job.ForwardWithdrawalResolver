@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Common;
 using Common.Log;
@@ -45,7 +45,12 @@ namespace Lykke.Job.ForwardWithdrawalResolver.PeriodicalHandlers
 
         public override async Task Execute()
         {
-            foreach (var forwardWithdrawal in await _repository.GetAllAsync())
+            await _repository.ProcessByChunksAsync(ProcessChunkAsync);
+        }
+
+        private async Task ProcessChunkAsync(IEnumerable<IForwardWithdrawal> items)
+        {
+            foreach (var forwardWithdrawal in items)
                 try
                 {
                     var daysToTrigger = (await _assetsServiceWithCache.TryGetAssetAsync(forwardWithdrawal.AssetId))?.ForwardFrozenDays;

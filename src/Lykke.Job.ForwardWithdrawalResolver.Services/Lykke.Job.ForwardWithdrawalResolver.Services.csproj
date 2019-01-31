@@ -6,7 +6,4 @@
   <ItemGroup>
     <ProjectReference Include="..\Lykke.Job.ForwardWithdrawalResolver.Core\Lykke.Job.ForwardWithdrawalResolver.Core.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Lykke.Common" Version="7.0.4" />
-  </ItemGroup>
 </Project>

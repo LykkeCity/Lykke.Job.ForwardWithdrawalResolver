@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Antares.Sdk;
+using Autofac;
+using JetBrains.Annotations;
 using Lykke.Job.ForwardWithdrawalResolver.Settings;
-using Lykke.Sdk;
+using Lykke.SettingsReader;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Lykke.Job.ForwardWithdrawalResolver
@@ -15,9 +17,12 @@ namespace Lykke.Job.ForwardWithdrawalResolver
             ApiVersion = "v1"
         };
 
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        private IReloadingManagerWithConfiguration<AppSettings> _settings;
+        private LykkeServiceOptions<AppSettings> _lykkeOptions;
+
+        public void ConfigureServices(IServiceCollection services)
         {
-            return services.BuildServiceProvider<AppSettings>(options =>
+            (_lykkeOptions, _settings) = services.ConfigureServices<AppSettings>(options =>
             {
                 options.SwaggerOptions = _swaggerOptions;
 
@@ -30,9 +35,19 @@ namespace Lykke.Job.ForwardWithdrawalResolver
             });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime appLifetime)
+        public void Configure(IApplicationBuilder app)
         {
             app.UseLykkeConfiguration(options => { options.SwaggerOptions = _swaggerOptions; });
+        }
+
+        [UsedImplicitly]
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            var configurationRoot = new ConfigurationBuilder()
+                .AddEnvironmentVariables()
+                .Build();
+
+            builder.ConfigureContainerBuilder(_lykkeOptions, configurationRoot, _settings);
         }
     }
 }

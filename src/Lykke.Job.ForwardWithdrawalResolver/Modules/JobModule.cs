@@ -1,11 +1,11 @@
 ﻿using System;
+using Antares.Sdk.Services;
 using Autofac;
 using Lykke.Job.ForwardWithdrawalResolver.Core.Services;
 using Lykke.Job.ForwardWithdrawalResolver.PeriodicalHandlers;
 using Lykke.Job.ForwardWithdrawalResolver.Services;
 using Lykke.Job.ForwardWithdrawalResolver.Settings;
 using Lykke.Job.ForwardWithdrawalResolver.Settings.JobSettings;
-using Lykke.Sdk;
 using Lykke.SettingsReader;
 
 namespace Lykke.Job.ForwardWithdrawalResolver.Modules

@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Autofac;
 using Lykke.Common.Log;
 using Lykke.Cqrs;
 using Lykke.Cqrs.Configuration;
+using Lykke.Cqrs.Middleware.Logging;
 using Lykke.Job.ForwardWithdrawalResolver.Sagas;
 using Lykke.Job.ForwardWithdrawalResolver.Sagas.Commands;
 using Lykke.Job.ForwardWithdrawalResolver.Sagas.Events;
@@ -37,7 +39,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Modules
 
             var rabbitMqSettings = new ConnectionFactory
             {
-                Uri = _settings.Cqrs.RabbitConnString
+                Uri = new Uri(_settings.Cqrs.RabbitConnString)
             };
             var rabbitMqEndpoint = rabbitMqSettings.Endpoint.ToString();
 
@@ -100,6 +102,10 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Modules
                 new DefaultEndpointProvider(),
                 true,
                 Register.DefaultEndpointResolver(sagasMessagePackEndpointResolver),
+
+                Register.EventInterceptors(new DefaultEventLoggingInterceptor(ctx.Resolve<ILogFactory>())),
+                Register.CommandInterceptors(new DefaultCommandLoggingInterceptor(ctx.Resolve<ILogFactory>())),
+                
                 Register.BoundedContext(BoundedContext.ForwardWithdrawal)
                     .ListeningCommands(
                         typeof(ProcessPaymentCommand),

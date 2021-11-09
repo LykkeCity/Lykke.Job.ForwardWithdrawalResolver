@@ -1,6 +1,6 @@
-﻿using JetBrains.Annotations;
+﻿using Antares.Sdk.Settings;
+using JetBrains.Annotations;
 using Lykke.Job.ForwardWithdrawalResolver.Settings.JobSettings;
-using Lykke.Sdk.Settings;
 using Lykke.Service.ExchangeOperations.Client;
 
 namespace Lykke.Job.ForwardWithdrawalResolver.Settings

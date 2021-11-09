@@ -57,3 +57,4 @@ _NCrunch_*
 node_modules
 **/launchSettings.json
 **/appsettings.*.json
+global.json

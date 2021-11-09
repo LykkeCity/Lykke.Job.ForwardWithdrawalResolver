@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
+using Antares.Sdk.Services;
 using JetBrains.Annotations;
 using Lykke.Cqrs;
-using Lykke.Sdk;
 
 namespace Lykke.Job.ForwardWithdrawalResolver.Services
 {

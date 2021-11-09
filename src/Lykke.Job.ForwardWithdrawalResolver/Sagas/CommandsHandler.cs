@@ -44,9 +44,14 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
             if (forwardWithdrawal == null)
                 return CommandHandlingResult.Ok();
 
+            _log.Info("Removing forward withdrawal record.", new {command.ClientId, command.Id});
+
             var entryExisted = await _repository.DeleteIfExistsAsync(command.ClientId, command.Id);
 
             if (entryExisted)
+            {
+                _log.Info("Removed forward withdrawal record.", forwardWithdrawal.ToJson());
+
                 eventPublisher.PublishEvent(new PaymentEntryRemovedEvent
                 {
                     Id = forwardWithdrawal.Id,
@@ -55,6 +60,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
                     Amount = forwardWithdrawal.Amount,
                     CashInId = forwardWithdrawal.CashInId
                 });
+            }
 
             return CommandHandlingResult.Ok();
         }

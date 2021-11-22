@@ -27,7 +27,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
             _log = logFactory.CreateLog(this);
         }
 
-        public async Task Handle(CashOutProcessedEvent cashOutProcessedEvent, ICommandSender commandSender)
+        public async Task<CommandHandlingResult> Handle(CashOutProcessedEvent cashOutProcessedEvent, ICommandSender commandSender)
         {
             var record = await _repository.TryGetByCashoutIdAsync(cashOutProcessedEvent.WalletId.ToString(), cashOutProcessedEvent.OperationId.ToString());
 
@@ -36,7 +36,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
                 if (!Guid.TryParse(record.CashInId, out var cashinId))
                 {
                     _log.Warning($"Cannot parse data : {record.ToJson()}");
-                    return;
+                    return CommandHandlingResult.Ok();
                 }
 
                 var asset = await _assetsServiceWithCache.TryGetAssetAsync(record.AssetId);
@@ -44,15 +44,23 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
 
                 var settlementDate = record.DateTime.AddDays(asset.ForwardFrozenDays);
 
-                commandSender.SendCommand(new CreateForwardCashinCommand
+                var command = new CreateForwardCashinCommand
                 {
                     AssetId = forwardAsset.Id,
                     OperationId = cashinId,
                     Timestamp = settlementDate,
                     Volume = Math.Abs(cashOutProcessedEvent.Volume).TruncateDecimalPlaces(forwardAsset.Accuracy),
                     WalletId = cashOutProcessedEvent.WalletId
-                }, HistoryBoundedContext.Name);
+                };
+
+                commandSender.SendCommand(command, HistoryBoundedContext.Name);
+
+                _log.Info("CreateForwardCashinCommand has been sent.", command);
+                return CommandHandlingResult.Ok();
             }
+
+            _log.Warning("No forward withdrawal record found.", context: new { Id = cashOutProcessedEvent.OperationId.ToString() });
+            return CommandHandlingResult.Fail(TimeSpan.FromSeconds(10));
         }
     }
 }

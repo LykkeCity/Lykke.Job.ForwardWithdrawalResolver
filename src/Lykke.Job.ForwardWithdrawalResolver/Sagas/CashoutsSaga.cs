@@ -18,17 +18,31 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
     {
         private readonly ILog _log;
         private readonly IForwardWithdrawalRepository _repository;
+        private readonly IBitCoinTransactionsRepository _bitCoinTransactionsRepository;
         private readonly IAssetsServiceWithCache _assetsServiceWithCache;
 
-        public CashoutsSaga(IForwardWithdrawalRepository repository, ILogFactory logFactory, IAssetsServiceWithCache assetsServiceWithCache)
+        public CashoutsSaga(
+            IForwardWithdrawalRepository repository,
+            IBitCoinTransactionsRepository bitCoinTransactionsRepository,
+            IAssetsServiceWithCache assetsServiceWithCache,
+            ILogFactory logFactory)
         {
             _repository = repository;
+            _bitCoinTransactionsRepository = bitCoinTransactionsRepository;
             _assetsServiceWithCache = assetsServiceWithCache;
             _log = logFactory.CreateLog(this);
         }
 
         public async Task<CommandHandlingResult> Handle(CashOutProcessedEvent cashOutProcessedEvent, ICommandSender commandSender)
         {
+            var bitcoinTransactionExists = await _bitCoinTransactionsRepository.TransactionExistsAsyncAsync(cashOutProcessedEvent.OperationId.ToString());
+
+            if (!bitcoinTransactionExists)
+            {
+                _log.Info("Skip cashout - not forward withdrawal.", context: cashOutProcessedEvent.ToJson());
+                return CommandHandlingResult.Ok();
+            }
+
             var record = await _repository.TryGetByCashoutIdAsync(cashOutProcessedEvent.WalletId.ToString(), cashOutProcessedEvent.OperationId.ToString());
 
             if (record != null)

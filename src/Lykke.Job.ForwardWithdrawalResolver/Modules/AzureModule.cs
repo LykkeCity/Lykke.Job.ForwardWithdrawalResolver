@@ -28,6 +28,12 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Modules
                             c.Resolve<ILogFactory>(),
                             TimeSpan.FromSeconds(60))))
                 .SingleInstance();
+
+            builder.Register<IBitCoinTransactionsRepository>(c =>
+                new BitCoinTransactionsRepository(
+                    AzureTableStorage<BitCoinTransactionEntity>.Create(
+                        _settings.ConnectionString(x => x.ForwardWithdrawalResolverJob.Db.BitCoinQueueConnectionString),
+                        "BitCoinTransactions", c.Resolve<ILogFactory>())));
         }
     }
 }

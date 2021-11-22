@@ -11,5 +11,8 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Settings.JobSettings
 
         [AzureTableCheck]
         public string ForwardWithdrawalsConnString { get; set; }
+
+        [AzureTableCheck]
+        public string BitCoinQueueConnectionString { get; set; }
     }
 }

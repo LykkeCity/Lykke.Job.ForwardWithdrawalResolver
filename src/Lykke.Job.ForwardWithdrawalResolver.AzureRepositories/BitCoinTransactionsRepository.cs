@@ -31,7 +31,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.AzureRepositories
             _tableStorage = tableStorage;
         }
 
-        public Task<bool> TransactionExistsAsyncAsync(string transactionId)
+        public Task<bool> TransactionExistsAsync(string transactionId)
         {
             var entity = BitCoinTransactionEntity.Create(transactionId);
 

@@ -1,11 +1,15 @@
 ForwardWithdrawalResolverJob:
-    Db: 
+    Db:
         ForwardWithdrawalsConnString:
             settings-key: ForwardWithdrawalResolverJob-ForwardWithdrawalsConnString
             types:
                 - AzureTableStorage
         LogsConnString:
             settings-key: ForwardWithdrawalResolverJob-LogsConnString
+            types:
+                - AzureTableStorage
+        BitCoinQueueConnectionString:
+            settings-key: BitCoinQueueConnectionString
             types:
                 - AzureTableStorage
     Cqrs:
@@ -42,4 +46,3 @@ SlackNotifications:
                 - AzureTableStorage
         QueueName:
             settings-key: SlackQueueName
-   

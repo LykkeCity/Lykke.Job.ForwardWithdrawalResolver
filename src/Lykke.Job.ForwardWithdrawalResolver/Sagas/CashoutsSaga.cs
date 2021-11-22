@@ -35,7 +35,7 @@ namespace Lykke.Job.ForwardWithdrawalResolver.Sagas
 
         public async Task<CommandHandlingResult> Handle(CashOutProcessedEvent cashOutProcessedEvent, ICommandSender commandSender)
         {
-            var bitcoinTransactionExists = await _bitCoinTransactionsRepository.TransactionExistsAsyncAsync(cashOutProcessedEvent.OperationId.ToString());
+            var bitcoinTransactionExists = await _bitCoinTransactionsRepository.TransactionExistsAsync(cashOutProcessedEvent.OperationId.ToString());
 
             if (!bitcoinTransactionExists)
             {

@@ -1,25 +1,36 @@
 using System.Threading.Tasks;
 using AzureStorage;
-using Microsoft.WindowsAzure.Storage.Table;
+using Lykke.AzureStorage.Tables;
+using Lykke.AzureStorage.Tables.Entity.Annotation;
 
 namespace Lykke.Job.ForwardWithdrawalResolver.AzureRepositories
 {
-    public class BitCoinTransactionEntity : TableEntity
+    public class BitCoinTransactionEntity : AzureTableEntity
     {
         public string TransactionId => RowKey;
 
-        private static string GeneratePartitionKey() => "TransId";
+        [JsonValueSerializer]
+        public ContextData ContextData { get; set; }
 
-        private static string GenerateRowKey(string transactionId) => transactionId;
+        internal static string GeneratePartitionKey() => "TransId";
+        internal static string GenerateRowKey(string transactionId) => transactionId;
+    }
 
-        public static BitCoinTransactionEntity Create(string id)
-        {
-            return new BitCoinTransactionEntity
-            {
-                PartitionKey = GeneratePartitionKey(),
-                RowKey = GenerateRowKey(id)
-            };
-        }
+    public class ContextData
+    {
+        [JsonValueSerializer]
+        public AdditionalData AddData { get; set; }
+    }
+
+    public class AdditionalData
+    {
+        [JsonValueSerializer]
+        public ForwardWithdrawalData ForwardWithdrawal { get; set; }
+    }
+
+    public class ForwardWithdrawalData
+    {
+        public string Id { get; set; }
     }
 
     public class BitCoinTransactionsRepository : IBitCoinTransactionsRepository
@@ -31,11 +42,11 @@ namespace Lykke.Job.ForwardWithdrawalResolver.AzureRepositories
             _tableStorage = tableStorage;
         }
 
-        public Task<bool> TransactionExistsAsync(string transactionId)
+        public async Task<bool> ForwardWithdrawalExistsAsync(string transactionId)
         {
-            var entity = BitCoinTransactionEntity.Create(transactionId);
+            var entity = await _tableStorage.GetDataAsync(BitCoinTransactionEntity.GeneratePartitionKey(), BitCoinTransactionEntity.GenerateRowKey(transactionId));
 
-            return _tableStorage.RecordExistsAsync(entity);
+            return entity?.ContextData?.AddData?.ForwardWithdrawal != null;
         }
     }
 }

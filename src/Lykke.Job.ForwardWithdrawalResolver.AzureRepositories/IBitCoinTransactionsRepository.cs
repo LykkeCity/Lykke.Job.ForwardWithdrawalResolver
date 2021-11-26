@@ -4,6 +4,6 @@ namespace Lykke.Job.ForwardWithdrawalResolver.AzureRepositories
 {
     public interface IBitCoinTransactionsRepository
     {
-        Task<bool> TransactionExistsAsync(string transactionId);
+        Task<bool> ForwardWithdrawalExistsAsync(string transactionId);
     }
 }
